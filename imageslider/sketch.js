@@ -26,14 +26,22 @@ function setup() {
 
 function draw() {
 image(img[counter], windowWidth /6,windowHeight/6, windowWidth /1.5,windowHeight/1.5);
-  if (keyIsPressed) {
-    if (keyCode === 39){
-      counter+=1;
-    }
-    if (keyCode === 37){
-      counter-=1;
-    }
+
+// if (counter>4){
+//   counter = 0;
+// }
+// if (counter<0){
+//   counter = 4;
+// }
+//  if (keyIsPressed) {
+} 
+function keyPressed(){
+  if (keyCode === 39){
+    counter+=1;
+  }
+  if (keyCode === 37){
+    counter+=-1;
+   }
   }
 
-}
 
