@@ -11,27 +11,29 @@ let img3;
 let img4;
 let img5;
 let counter = 0;
+let img;
 function preload(){
   img1 = loadImage("assets/bcg-0.jpg");
   img2 = loadImage("assets/bcg-1.jpg");
   img3 = loadImage("assets/bcg-2.jpg");
   img4 = loadImage("assets/bcg-3.jpg");
   img5 = loadImage("assets/bcg-4.jpg");
+  img = new Array(img1,img2,img3,img4,img5);
 }
 function setup() {
   createCanvas(windowWidth,windowHeight);
 }
 
 function draw() {
- // image(img1, windowWidth /6,windowHeight/6, windowWidth /1.5,windowHeight/1.5)
-  
+image(img[counter], windowWidth /6,windowHeight/6, windowWidth /1.5,windowHeight/1.5);
   if (keyIsPressed) {
     if (keyCode === 39){
-      counter -=1;
+      counter+=1;
     }
-    else if (keyCode === 37){
-      counter +=1;
+    if (keyCode === 37){
+      counter-=1;
     }
   }
+
 }
 

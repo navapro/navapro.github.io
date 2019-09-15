@@ -27,7 +27,7 @@ function draw() {
     }
   }
 
-  imageMode(CENTER)
+  imageMode(CENTER);
   image(ball, mouseX, mouseY,size,size);
 }
  
