@@ -10,7 +10,7 @@ let img2;
 let img3;
 let img4;
 let img5;
-
+let counter = 0;
 function preload(){
   img1 = loadImage("assets/bcg-0.jpg");
   img2 = loadImage("assets/bcg-1.jpg");
@@ -23,6 +23,15 @@ function setup() {
 }
 
 function draw() {
-  image(img1, windowWidth /6,windowHeight/6, windowWidth /1.5,windowHeight/1.5)
+ // image(img1, windowWidth /6,windowHeight/6, windowWidth /1.5,windowHeight/1.5)
+  
+  if (keyIsPressed) {
+    if (keyCode === 39){
+      counter -=1;
+    }
+    else if (keyCode === 37){
+      counter +=1;
+    }
+  }
 }
- 
+
