@@ -12,6 +12,9 @@ let img4;
 let img5;
 let counter = 0;
 let img;
+let next;
+let prev;
+
 function preload(){
   img1 = loadImage("assets/bcg-0.jpg");
   img2 = loadImage("assets/bcg-1.jpg");
@@ -19,21 +22,22 @@ function preload(){
   img4 = loadImage("assets/bcg-3.jpg");
   img5 = loadImage("assets/bcg-4.jpg");
   img = new Array(img1,img2,img3,img4,img5);
+  next = loadImage("assets/next.ico")
+  prev = loadImage("assets/prev.ico")
 }
 function setup() {
   createCanvas(windowWidth,windowHeight);
 }
 
 function draw() {
-image(img[counter], windowWidth /6,windowHeight/6, windowWidth /1.5,windowHeight/1.5);
+image(img[counter], width /6,height/6, width /1.5,height/1.5);
+image(next, width /1.15, height/2.5, height/5,height/5);
+image(prev, width /25, height/2.5, height/5,height/5);
+
 }
 
 function keyPressed(){
-  // if (counter === 4){
-  //   counter = -1;
-  // }
-  // else if (counter === 0){
-  //   counter = 4;
+
 
   if (keyCode === 39){
     counter++;
