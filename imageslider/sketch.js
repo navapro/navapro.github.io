@@ -14,7 +14,6 @@ let counter = 0;
 let img;
 let next;
 let prev;
-
 function preload(){
   img1 = loadImage("assets/bcg-0.jpg");
   img2 = loadImage("assets/bcg-1.jpg");
@@ -22,11 +21,11 @@ function preload(){
   img4 = loadImage("assets/bcg-3.jpg");
   img5 = loadImage("assets/bcg-4.jpg");
   img = new Array(img1,img2,img3,img4,img5);
-  next = loadImage("assets/next.ico")
-  prev = loadImage("assets/prev.ico")
+  next = loadImage("assets/next.ico");
+  prev = loadImage("assets/prev.ico");
 }
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+ createCanvas(windowWidth,windowHeight);
 }
 
 function draw() {
@@ -37,8 +36,6 @@ image(prev, width /25, height/2.5, height/5,height/5);
 }
 
 function keyPressed(){
-
-
   if (keyCode === 39){
     counter++;
     if (counter>4){
@@ -51,6 +48,19 @@ function keyPressed(){
       counter=4;
     }
   
+  }
 }
 
+function mouseWheel() {
+  delayTime(.5)
+  switchimg()
 }
+
+function switchimg(){
+  counter++;
+  if (counter>4){
+    counter=0;
+
+  }
+}
+
