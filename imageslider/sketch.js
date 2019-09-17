@@ -14,6 +14,9 @@ let counter = 0;
 let img;
 let next;
 let prev;
+let imageheight;
+let imagewidth;
+
 function preload(){
   img1 = loadImage("assets/bcg-0.jpg");
   img2 = loadImage("assets/bcg-1.jpg");
@@ -23,15 +26,19 @@ function preload(){
   img = new Array(img1,img2,img3,img4,img5);
   next = loadImage("assets/next.ico");
   prev = loadImage("assets/prev.ico");
+  imageheight = windowHeight/1.5;
+  imagewidth = windowWidth /1.5;
 }
 function setup() {
  createCanvas(windowWidth,windowHeight);
 }
 
 function draw() {
-image(img[counter], width /6,height/6, width /1.5,height/1.5);
-image(next, width /1.15, height/2.5, height/5,height/5);
-image(prev, width /25, height/2.5, height/5,height/5);
+  
+  imageMode(CENTER)
+  image(img[counter], width /2,height/2, imagewidth,imageheight);
+  image(next, width /1.1, height/2, height/5,height/5);
+  image(prev, width /12, height/2, height/5,height/5);
 
 }
 
@@ -51,16 +58,24 @@ function keyPressed(){
   }
 }
 
-function mouseWheel() {
-  delayTime(.5)
-  switchimg()
-}
-
-function switchimg(){
-  counter++;
-  if (counter>4){
-    counter=0;
-
+function mouseWheel(event) {
+  dy = event.delta;
+  if (dy>0);{
+   zoomimg();
   }
+  else if (dy<0);{
+    zoomimg_out();
+   }
+
 }
 
+function zoomimg(){
+ 
+  imageheight/= 1.1
+  imagewidth /= 1.1
+}
+function zoomimg_out(){
+ 
+  imageheight*= 1.1
+  imagewidth *= 1.1
+}
