@@ -17,6 +17,8 @@ let prev;
 let imageheight;
 let imagewidth;
 let dy;
+let nextimage;
+let previmage;
 
 function preload(){
   img1 = loadImage("assets/bcg-0.jpg");
@@ -38,24 +40,17 @@ function draw() {
   background(255);
   imageMode(CENTER);
   image(img[counter], width /2,height/2, imagewidth,imageheight);
-  image(next, width /1.1, height/2, height/5,height/5);
-  image(prev, width /12, height/2, height/5,height/5);
+  nextimage = image(next, width /1.1, height/2, height/5,height/5);
+  previmage = image(prev, width /12, height/2, height/5,height/5);
 }
 
 
 function keyPressed(){
   if (keyCode === 39){
-    counter++;
-    if (counter>4){
-      counter=0;
-    }
+    slideimageforward();
   }
   if (keyCode === 37){
-    counter--;
-    if (counter<0){
-      counter=4;
-    }
-  
+   slideimagebackwards();
   }
 }
 
@@ -80,3 +75,22 @@ function zoomimg_out(){
   imageheight*= 1.1
   imagewidth *= 1.1
 }
+function mousePressed() {
+  nextimage.mouseOver(slideimageforward());
+  previmage.mouseOver(slideimagebackwards());
+}
+
+function slideimageforward(){
+    counter++;
+    if (counter>4){
+      counter=0;
+    }
+  }
+function slideimagebackwards(){
+    counter--;
+    if (counter<0){
+      counter=4;
+    }
+  
+  }
+
