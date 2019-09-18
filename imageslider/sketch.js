@@ -16,6 +16,7 @@ let next;
 let prev;
 let imageheight;
 let imagewidth;
+let dy;
 
 function preload(){
   img1 = loadImage("assets/bcg-0.jpg");
@@ -30,7 +31,7 @@ function preload(){
   imagewidth = windowWidth /1.5;
 }
 function setup() {
- createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth,windowHeight);
 }
 
 function draw() {
@@ -39,8 +40,14 @@ function draw() {
   image(img[counter], width /2,height/2, imagewidth,imageheight);
   image(next, width /1.1, height/2, height/5,height/5);
   image(prev, width /12, height/2, height/5,height/5);
-
 }
+
+if (dy>0){
+  zoomimg();
+ }
+ else if (dy<0){
+   zoomimg_out();
+  }
 
 function keyPressed(){
   if (keyCode === 39){
@@ -60,12 +67,6 @@ function keyPressed(){
 
 function mouseWheel(event) {
   dy = event.delta;
-  if (dy>0);{
-   zoomimg();
-  }
-  else if (dy<0);{
-    zoomimg_out();
-   }
 
 }
 
