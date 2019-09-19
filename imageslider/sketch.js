@@ -87,7 +87,7 @@ function mousePressed() {
     slideimageforward()
   }
   if (dprev<nextandprevwidth){
-    slideimageforward()
+    slideimagebackwards()
   }
 
 }
