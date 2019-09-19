@@ -25,7 +25,7 @@ let nextandprevwidth;
 let sound;
 
 function preload(){
-  sound = loadSound("assets/sound.mp3")
+  sound = loadSound('assets/sound.mp3');
   img1 = loadImage("assets/bcg-0.jpg");
   img2 = loadImage("assets/bcg-1.jpg");
   img3 = loadImage("assets/bcg-2.jpg");
