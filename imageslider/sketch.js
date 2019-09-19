@@ -19,6 +19,9 @@ let imagewidth;
 let dy;
 let nextimage;
 let previmage;
+let dprev;
+let dnext;
+let nextandprevwidth;
 
 function preload(){
   img1 = loadImage("assets/bcg-0.jpg");
@@ -31,6 +34,7 @@ function preload(){
   prev = loadImage("assets/prev.ico");
   imageheight = windowHeight/1.5;
   imagewidth = windowWidth /1.5;
+  nextandprevwidth = windowHeight/11
 }
 function setup() {
   createCanvas(windowWidth,windowHeight);
@@ -42,6 +46,7 @@ function draw() {
   image(img[counter], width /2,height/2, imagewidth,imageheight);
   nextimage = image(next, width /1.1, height/2, height/5,height/5);
   previmage = image(prev, width /12, height/2, height/5,height/5);
+  
 }
 
 
@@ -76,8 +81,15 @@ function zoomimg_out(){
   imagewidth *= 1.1
 }
 function mousePressed() {
-  nextimage.mouseOver(slideimageforward());
-  previmage.mouseOver(slideimagebackwards());
+  dnext = dist(mouseX, mouseY, width /1.1, height/2);
+  dprev = dist(mouseX, mouseY, width /12, height/2);
+  if (dnext<nextandprevwidth){
+    slideimageforward()
+  }
+  if (dprev<nextandprevwidth){
+    slideimageforward()
+  }
+
 }
 
 function slideimageforward(){
