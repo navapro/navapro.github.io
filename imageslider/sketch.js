@@ -22,8 +22,10 @@ let previmage;
 let dprev;
 let dnext;
 let nextandprevwidth;
+let sound;
 
 function preload(){
+  sound = loadSound("assets/sound.mp3")
   img1 = loadImage("assets/bcg-0.jpg");
   img2 = loadImage("assets/bcg-1.jpg");
   img3 = loadImage("assets/bcg-2.jpg");
@@ -67,7 +69,6 @@ function mouseWheel(event) {
   else if (dy<0){
      zoomimg_out();
   }
-
 }
 
 function zoomimg(){
@@ -89,20 +90,20 @@ function mousePressed() {
   if (dprev<nextandprevwidth){
     slideimagebackwards()
   }
-
 }
 
 function slideimageforward(){
     counter++;
+    sound.play();
     if (counter>4){
       counter=0;
     }
   }
 function slideimagebackwards(){
     counter--;
+    sound.play();
     if (counter<0){
       counter=4;
     }
-  
   }
 
