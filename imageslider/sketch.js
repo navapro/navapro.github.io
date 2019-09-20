@@ -5,6 +5,8 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+// define all the variables.
+
 let img1;
 let img2;
 let img3;
@@ -24,6 +26,8 @@ let dnext;
 let nextandprevwidth;
 let sound;
 
+// preload all the images and sounds.
+
 function preload(){
   sound = loadSound('assets/sound.mp3');
   img1 = loadImage("assets/bcg-0.jpg");
@@ -31,15 +35,21 @@ function preload(){
   img3 = loadImage("assets/bcg-2.jpg");
   img4 = loadImage("assets/bcg-3.jpg");
   img5 = loadImage("assets/bcg-4.jpg");
-  img = new Array(img1,img2,img3,img4,img5);
   next = loadImage("assets/next.ico");
   prev = loadImage("assets/prev.ico");
+}
+
+// set the canvas size and image height and width.
+
+function setup() {
+  createCanvas(windowWidth,windowHeight);
   imageheight = windowHeight/1.5;
   imagewidth = windowWidth /1.5;
   nextandprevwidth = windowHeight/11
-}
-function setup() {
-  createCanvas(windowWidth,windowHeight);
+
+// place the images in an array.
+    
+img = new Array(img1,img2,img3,img4,img5);
 }
 
 function draw() {
@@ -75,11 +85,13 @@ function zoomimg(){
  
   imageheight/= 1.1
   imagewidth /= 1.1
+
 }
 function zoomimg_out(){
  
   imageheight*= 1.1
   imagewidth *= 1.1
+
 }
 function mousePressed() {
   dnext = dist(mouseX, mouseY, width /1.1, height/2);
@@ -90,6 +102,10 @@ function mousePressed() {
   if (dprev<nextandprevwidth){
     slideimagebackwards()
   }
+}
+
+function windowResized() {
+  setup();
 }
 
 function slideimageforward(){

@@ -28,9 +28,7 @@ function draw() {
   }
 }
 
-function windowResized() {
-  setup();
-}
+
 
 function moveShape() {
   // move
