@@ -1,9 +1,10 @@
-// Project Title
-// Your Name
-// Date
-//
+// Image slider with zoom.
+// Navaneeth Krishna
+// 23 September 2019
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// - Used mouse wheel as an input to zoom in and out of the image.
+// - Used windowResized() to adapt the code if the user resized the window.
+// - Added sound to the project.
 
 // Define all the variables.
 let img1;
