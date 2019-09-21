@@ -80,7 +80,7 @@ function mousePressed() {
   // Calculating the distance between mouse pointer and the center of the next and previous image.
   dnext = dist(mouseX, mouseY, width / 1.1, height / 2);
   dprev = dist(mouseX, mouseY, width / 12, height / 2);
-  
+
   // Checking if the mouse pointer is inside the next button slide the image if it is.
   if (dnext < nextandprevwidth) {
     slideimageforward()
@@ -134,7 +134,7 @@ function windowResized() {
 // Swicth to the next image by adding 1 to counter.
 function slideimageforward() {
   counter++;
- 
+
   // If counter is greater than 4, it is outside the array and set couter back to 0.
   if (counter > 4) {
     counter = 0;
@@ -143,18 +143,18 @@ function slideimageforward() {
   // Play clicking sound when image switches.
   sound.play();
 
-  
+
 }
 
 // Swicth to the previous image by subtracting 1 from counter.
 function slideimagebackwards() {
   counter--;
- 
-   // If counter is less than 0, it is outside the array and set couter back to 4.
+
+  // If counter is less than 0, it is outside the array and set couter back to 4.
   if (counter < 0) {
     counter = 4;
   }
-  
+
   // Play clicking sound when image switches.
   sound.play();
 }
