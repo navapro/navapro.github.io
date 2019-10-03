@@ -30,12 +30,12 @@ control.addEventListener('change',renderer);
 
 let materialArray = [];
 
-textureFt = new THREE.TextureLoader().load("assets/met_ft.tga");
-textureBk = new THREE.TextureLoader().load("assets/met_bk.tga");
-textureRt = new THREE.TextureLoader().load("assets/met_rt.tga");
-textureLf = new THREE.TextureLoader().load("assets/met_lf.tga");
-textureUp = new THREE.TextureLoader().load("assets/met_up.tga");
-textureDn = new THREE.TextureLoader().load("assets/met_dn.tga");
+textureFt = new THREE.TextureLoader().load("assets/ft.jpg");
+textureBk = new THREE.TextureLoader().load("assets/bk.jpg");
+textureUp = new THREE.TextureLoader().load("assets/up.jpg");
+textureDn = new THREE.TextureLoader().load("assets/dn.jpg");
+textureRt = new THREE.TextureLoader().load("assets/rt.jpg");
+textureLf = new THREE.TextureLoader().load("assets/lf.jpg");
 
 
 
