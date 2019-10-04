@@ -13,12 +13,16 @@ let textureFt,textureBk,textureRt,textureLf,textureUp,textureDn;
 let skyBoxGeo;
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
+let cameraX = -900;
+let cameraY = -200;
+let cameraZ = -900;
+
 
 function init(){
 scene = new THREE.Scene();
 
 camera = new THREE.PerspectiveCamera(55, windowWidth/windowHeight,45, 300000);
-camera.position.set(-900,-200,-900);
+camera.position.set(cameraX,cameraY,cameraZ);
 
 
 renderer = new THREE.WebGLRenderer({antialias:true});
