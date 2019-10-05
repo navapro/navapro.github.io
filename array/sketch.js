@@ -17,7 +17,7 @@ function draw() {
 
     shapes[i].y += shapes[i].dy;
     fill(shapes[i].col)
-    stroke(0)
+    noStroke()
     ellipse(shapes[i].x, shapes[i].y, shapes[i].radius*2,shapes[i].radius*2)
   }
 
