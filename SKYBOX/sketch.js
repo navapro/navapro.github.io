@@ -16,7 +16,11 @@ let windowHeight = window.innerHeight;
 let cameraX = -900;
 let cameraY = -200;
 let cameraZ = -900;
+let crossHair;
 
+function preload(){
+crossHair = loadImage('assets/Crosshair.png')
+}
 
 function init(){
 scene = new THREE.Scene();
