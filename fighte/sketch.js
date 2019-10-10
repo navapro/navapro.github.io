@@ -10,7 +10,6 @@ function preload() {}
   img2 = loadImage("assets/bcg-1.jpg");
 
   function setup() {
-  background(0);
 }
 
 function draw() {
