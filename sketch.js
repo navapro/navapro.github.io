@@ -9,7 +9,7 @@ let runArray = [];
 let run1,run2,run3,run4,run5,run6,run7,run8,run9,run10;
 let fighter;
 let img
-let state;
+let state; //  can i leave it like this or do i need = to stop;
 
 function preload() {
 
@@ -30,24 +30,49 @@ function preload() {
     createCanvas(windowWidth, windowHeight);
     runArray = [run1,run2,run3,run4,run5,run6,run7,run8,run9,run10];
 
-    fighter = new Run(runArray,windowWidth / 4, windowHeight/2,.45);
+    fighter = new Run(runArray,windowWidth / 4, windowHeight/1.5,.45);
   }
 
 function draw() {
   background(img);
-
   fighter.show();
-
-if (keyIsPressed === true) {
   
-  if (keyCode === 39) { 
-      fighter.moveForward();
-    }
-  
-  if (keyCode === 37) {
-    fighter.moveBackward();
+  if (state ==='forward'){
+  fighter.animate();
+  state = 'stop'
   }
-    
-} 
-}
+  
+   if (state ==='backward'){
+  fighter.animateBack();
+  state = 'stop';
+   }
+  if (state ==='stop'){
+    fighter.stop();
 
+  }
+}
+// if (keyIsPressed === true) {
+  
+//   if (keyCode === 39) { 
+//     state = 'forward';
+//   }
+  
+//   if (keyCode === 37) {
+//     state = 'backward';
+//   }
+  
+
+// how can i use state
+
+
+function keyPressed() {
+
+  
+  if (keyCode === 39) {
+    state = "forward";
+  }
+
+  if (keyCode === 37) {
+    state = "backward";
+  }
+}
