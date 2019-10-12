@@ -10,6 +10,7 @@ let run1,run2,run3,run4,run5,run6,run7,run8,run9,run10;
 let fighter;
 let img
 let state;
+let heroX,heroY;
 
 function preload() {
   loadRun();
@@ -20,7 +21,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   runArray = [run1,run2,run3,run4,run5,run6,run7,run8,run9,run10];
   
-  fighter = new Run(runArray,windowWidth / 4, windowHeight/2,.5); // new run neede or let run
+  fighter = new Run(runArray,windowWidth / 4, windowHeight/2,.5,windowHeight/2); // new run neede or let run
 }
 
 function draw() {
@@ -36,6 +37,10 @@ function draw() {
     
   if (keyCode === 37) {
     fighter.moveBackward();
+  }
+  if (keyCode === 38) {
+    fighter.jump();
+    fighter.jumpBack();
   }
   
 } 

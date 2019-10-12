@@ -1,11 +1,13 @@
+
  class Run {
-     constructor(animation,x,y, speed){
+     constructor(animation,x,y, speed,baseY){
          this.animation = animation;
          this.speed = speed;
          this.counter = 0;
          this.len = this.animation.length;
          this.x = x;
          this.y = y;
+         heroY = baseY;
      }
 
  show(){
@@ -25,6 +27,19 @@ moveBackward(){
    this.x += this.speed*-5;
    }
 }
+jump(){
+    while(this.y > windowHeight/3) {
+        this.y -= 1;
+    }
+  //this.y = windowHeight/2;
+ }
+
+jumpBack(){
+    while(this.y < windowHeight/2) {
+        this.y += 1;
+    }
+}
+
 // stop(){
 //     if (this.x != windowWidth|| this.x != 0 ){
 //     this.x = this.x;
