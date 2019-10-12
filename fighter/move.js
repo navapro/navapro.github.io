@@ -31,14 +31,14 @@ jump(){
     while(this.y > windowHeight/3) {
         this.y -= 1;
     }
-  //this.y = windowHeight/2;
- }
+
+}
 
 jumpBack(){
-    while(this.y < windowHeight/2) {
-        this.y += 1;
-    }
-}
+    this.y =  windowHeight/2;
+    console.log('yes');
+  //this.y = windowHeight/2;
+ }
 
 // stop(){
 //     if (this.x != windowWidth|| this.x != 0 ){

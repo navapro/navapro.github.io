@@ -11,6 +11,7 @@ let fighter;
 let img
 let state;
 let heroX,heroY;
+let waitTime;
 
 function preload() {
   loadRun();
@@ -39,9 +40,12 @@ function draw() {
     fighter.moveBackward();
   }
   if (keyCode === 38) {
+    waitTime = millis();
     fighter.jump();
+  if (millis() > waitTime + .1){
     fighter.jumpBack();
+}
+}
   }
   
 } 
-}
