@@ -40,12 +40,11 @@ function draw() {
     fighter.moveBackward();
   }
   if (keyCode === 38) {
-    waitTime = millis();
+    //waitTime = millis();
     fighter.jump();
-  if (millis() > waitTime + .1){
-    fighter.jumpBack();
+  //if (millis() > waitTime + .1){
 }
 }
+fighter.gravity();
   }
   
-} 

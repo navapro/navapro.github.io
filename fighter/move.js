@@ -28,16 +28,17 @@ moveBackward(){
    }
 }
 jump(){
-    while(this.y > windowHeight/3) {
-        this.y -= 1;
+    if (this.y > windowHeight/3) {
+        this.y -= 10;
     }
+    
 
 }
 
-jumpBack(){
-    this.y =  windowHeight/2;
-    console.log('yes');
-  //this.y = windowHeight/2;
+gravity(){
+    if (this.y< windowHeight/2){
+        this.y +=2;
+    }
  }
 
 // stop(){
