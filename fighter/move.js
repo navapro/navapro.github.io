@@ -1,19 +1,20 @@
 
  class Run {
-     constructor(animation,x,y, speed,baseY){
+     constructor(animation,x,y, speed){
          this.animation = animation;
          this.speed = speed;
          this.counter = 0;
          this.len = this.animation.length;
          this.x = x;
          this.y = y;
-         heroY = baseY;
      }
 
  show(){
      let runSpeed = floor(this.counter) % this.len
      //imageMode(CENTER);
     image(this.animation[runSpeed], this.x,this.y, 300, 300);
+    heroX = this.x;
+    heroY = this.y;
  }
 moveForward(){
     this.counter += this.speed;
@@ -28,7 +29,7 @@ moveBackward(){
    }
 }
 jump(){
-    if (this.y > windowHeight/3) {
+    if (this.y > windowHeight/5) {
         this.y -= 10;
     }
     
@@ -41,10 +42,10 @@ gravity(){
     }
  }
 
-// stop(){
-//     if (this.x != windowWidth|| this.x != 0 ){
-//     this.x = this.x;
-//     }
-// }
-}
 
+ }
+
+
+ class Attack {
+
+ }
