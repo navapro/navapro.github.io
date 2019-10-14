@@ -27,7 +27,7 @@ function setup() {
   attackArray =[attack0,attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9];
   
   fighter = new Run(runArray,windowWidth / 4, windowHeight/2,.6); // new run neede or let run
-  fighterAttack = new Attack(attackArray,heroX,heroY,.2);
+  fighterAttack = new Attack(attackArray,heroX,heroY,.1);
 }
 
 function draw() {
@@ -52,15 +52,15 @@ function draw() {
 }
 }
 if (state === 'attack'){ 
-  fighterAttack.gravity();
   fighterAttack.hit();
-  attackCounter += 1;
+  attackCounter += .1;
 }
-if (attackCounter > 50){
+if (attackCounter > 10){
   state = 'notAttack';
   attackCounter = 0;
 }
 fighter.gravity();
+fighterAttack.gravity();
 }
 
  function keyPressed() {
