@@ -60,4 +60,10 @@ this.counter += this.speed;
 let runSpeed = floor(this.counter) % this.len
 image(this.animation[runSpeed], heroX,heroY, 350, 308);// whyt thuis .x doesnt work
 }
+
+gravity(){
+    if (this.y< windowHeight/2){
+        this.y +=2;
+    }
+ }
  }

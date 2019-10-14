@@ -13,7 +13,7 @@ let fighter,fighterAttack;
 let img
 let state = 'notAttack';
 let heroX,heroY;
-let waitTime;
+let attackCounter = 0;
 
 function preload() {
   loadRun();
@@ -27,7 +27,7 @@ function setup() {
   attackArray =[attack0,attack1,attack2,attack3,attack4,attack5,attack6,attack7,attack8,attack9];
   
   fighter = new Run(runArray,windowWidth / 4, windowHeight/2,.6); // new run neede or let run
-  fighterAttack = new Attack(attackArray,heroX,heroY,.5);
+  fighterAttack = new Attack(attackArray,heroX,heroY,.2);
 }
 
 function draw() {
@@ -52,8 +52,13 @@ function draw() {
 }
 }
 if (state === 'attack'){ 
+  fighterAttack.gravity();
   fighterAttack.hit();
-  //fighter.attack();
+  attackCounter += 1;
+}
+if (attackCounter > 50){
+  state = 'notAttack';
+  attackCounter = 0;
 }
 fighter.gravity();
 }
@@ -64,6 +69,6 @@ fighter.gravity();
 state = 'attack';
 }
 else{
-  state = 'notAttack'
+  state = 'notAttack';
 }
  }
