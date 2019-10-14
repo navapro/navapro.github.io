@@ -12,9 +12,9 @@ function loadRun() {
   img = loadImage("assets/bg3.gif");
 }
 
-function loadAttack(){
+function loadAttack() {
   attack0 = loadImage("assets/attack/attack(0).png");
-  attack1 =  loadImage("assets/attack/attack(1).png");
+  attack1 = loadImage("assets/attack/attack(1).png");
   attack2 = loadImage("assets/attack/attack(2).png");
   attack3 = loadImage("assets/attack/attack(3).png");
   attack4 = loadImage("assets/attack/attack(4).png");
