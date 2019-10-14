@@ -47,5 +47,17 @@ gravity(){
 
 
  class Attack {
-
+    constructor(animation,x,y,speed){
+    this.animation = animation;
+    this.counter = 0;
+    this.len = this.animation.length;
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+}
+hit(){
+this.counter += this.speed;
+let runSpeed = floor(this.counter) % this.len
+image(this.animation[runSpeed], heroX,heroY, 350, 308);// whyt thuis .x doesnt work
+}
  }
