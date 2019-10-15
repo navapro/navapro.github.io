@@ -30,7 +30,7 @@ class Run {
     }
     jump() {
         if (this.y > windowHeight / 5) {
-            this.y -= 10;
+            this.y -= 20;
         }
 
 
@@ -38,7 +38,7 @@ class Run {
 
     gravity() {
         if (this.y < windowHeight / 2) {
-            this.y += 2;
+            this.y += 4;
         }
     }
 
@@ -63,7 +63,7 @@ class Attack {
 
     gravity() {
         if (heroY < windowHeight / 2) {
-            heroY += 1;
+            heroY += 4;
         }
     }
 }
