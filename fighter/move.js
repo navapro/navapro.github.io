@@ -19,18 +19,20 @@ class Run {
     moveForward() {
         this.counter += this.speed;
         if (this.x < windowWidth / 1.2) {// this is fine/1.2
-            this.x += this.speed * 5;
+            this.x += this.speed * 10;
         }
     }
     moveBackward() {
         this.counter += this.speed;
         if (this.x > 0) {
-            this.x += this.speed * -5;
+            this.x += this.speed * -10;
         }
     }
     jump() {
         if (this.y > windowHeight / 5) {
+            if (this.y - 20 < windowHeight / 5){
             this.y -= 20;
+            }
         }
 
 
