@@ -30,7 +30,7 @@ class Run {
     }
     jump() {
         if (this.y > windowHeight / 5) {
-            if (this.y - 20 < windowHeight / 5){
+            if (this.y - 20 > windowHeight / 5){ //this deosnt work
             this.y -= 20;
             }
         }
