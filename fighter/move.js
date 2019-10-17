@@ -1,5 +1,5 @@
 
-class Run {
+class Run { // camel case capital n??
     constructor(animation, x, y, speed) {
         this.animation = animation;
         this.speed = speed;

@@ -24,3 +24,12 @@ function loadAttack() {
   attack8 = loadImage("assets/attack/attack(8).png");
   attack9 = loadImage("assets/attack/attack(9).png");
 }
+
+function loadZombie1() {
+  zombie0 = loadImage("assets/Zombie1/Walk1.png");
+  zombie1 = loadImage("assets/Zombie1/Walk2.png");
+  zombie2 = loadImage("assets/Zombie1/Walk3.png");
+  zombie3 = loadImage("assets/Zombie1/Walk4.png");
+  zombie4 = loadImage("assets/Zombie1/Walk5.png");
+  zombie5 = loadImage("assets/Zombie1/Walk6.png");
+}
