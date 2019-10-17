@@ -51,14 +51,15 @@ function draw() {
       fighter.jump();
     }
   }
-  if ( state === 'attack') {
-    
+  if ( attackkk) {
+    //state === 'attack'
     fighterAttack.hit();
     attackCounter += .1;
     fighterAttack.gravity();
   }
   if (attackCounter > 5) {
-    state = 'notAttack';
+    attackkk = false;
+    //state = 'notAttack';
     attackCounter = 0;
   }
   fighter.gravity();
@@ -68,12 +69,12 @@ function draw() {
 function keyPressed() {
 
   if (keyCode === 32) {
-    //atackkk = trute;
-    state = 'attack';
+    attackkk = true;
+    //state = 'attack';
   }
-  else {
-   state = 'notAttack';
-  }
+  // else {
+  //   state = 'notAttack';
+  //}
   if (keyCode === 39) {
     movingForward = true;
   }
