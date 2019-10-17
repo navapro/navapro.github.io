@@ -1,4 +1,4 @@
-class zombieRun {
+ class zombieRun {
     constructor(animation, x, y, speed) {
         this.animation = animation;
         this.speed = speed;
