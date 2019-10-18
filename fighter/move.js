@@ -7,6 +7,7 @@ class Run { // camel case capital n??
         this.len = this.animation.length;
         this.x = x;
         this.y = y;
+        
     }
 
     show() {
@@ -43,6 +44,7 @@ class Run { // camel case capital n??
             this.y += 4;
         }
     }
+    
 
 
 }
