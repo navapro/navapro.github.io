@@ -33,3 +33,14 @@ function loadZombie1() {
   zombie4 = loadImage("assets/Zombie1/Walk5.png");
   zombie5 = loadImage("assets/Zombie1/Walk6.png");
 }
+function loadZombie1Dead() {
+  zombieDead0 = loadImage("assets/zombie1/Dead1.png");
+  zombieDead1 = loadImage("assets/zombie1/Dead2.png");
+  zombieDead2 = loadImage("assets/zombie1/Dead3.png");
+  zombieDead3 = loadImage("assets/zombie1/Dead4.png");
+  zombieDead4 = loadImage("assets/zombie1/Dead5.png");
+  zombieDead5 = loadImage("assets/Zombie1/Dead6.png");
+  zombieDead6 = loadImage("assets/Zombie1/Dead7.png");
+  zombieDead7 = loadImage("assets/Zombie1/Dead8.png");
+  
+}

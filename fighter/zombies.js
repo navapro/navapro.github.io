@@ -9,11 +9,12 @@
     }
 
     show() {
-        push()
-        let runSpeed = floor(this.counter) % this.len
-        imageMode(CENTER);
+        push()// do i need semicolen
+        let runSpeed = floor(this.counter) % this.len;
         image(this.animation[runSpeed], this.x, this.y, 250, 250);
-        pop()
+        pop();
+        zombieX = this.x;
+        zombieY = this.y;
     }
     moveForward() {
         this.counter += this.speed;
