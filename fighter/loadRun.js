@@ -42,5 +42,4 @@ function loadZombie1Dead() {
   zombieDead5 = loadImage("assets/Zombie1/Dead6.png");
   zombieDead6 = loadImage("assets/Zombie1/Dead7.png");
   zombieDead7 = loadImage("assets/Zombie1/Dead8.png");
-  
 }

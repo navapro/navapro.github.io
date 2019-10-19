@@ -30,3 +30,19 @@
     }
 
 }
+class zombieDead {
+    constructor(animation, x, y, speed) {
+        this.animation = animation;
+        this.counter = 0;
+        this.len = this.animation.length;
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+    }
+    dead() {
+        this.counter += this.speed;
+        let runSpeed = floor(this.counter) % this.len
+        image(this.animation[runSpeed], zombieX, zombieY,  250, 250);// whyt thuis .x doesnt work//x and y cpitl or not
+    }
+
+}
