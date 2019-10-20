@@ -39,7 +39,7 @@ function setup() {
   // positions canvas 50px to the right and 100px
   // https://p5js.org/reference/#/p5.Element/position//https://www.youtube.com/watch?v=OIfEHD3KqCg//
   // cnv.position(50, 100);
-  zombieSpeed = 0.01;
+  zombieSpeed = 0.05;
 
   runArray = [run1, run2, run3, run4, run5, run6, run7, run8, run9, run10];
   attackArray = [attack0, attack1, attack2, attack3, attack4, attack5, attack6, attack7, attack8, attack9];
@@ -49,18 +49,21 @@ function setup() {
   fighter = new Run(runArray, windowWidth / 4, windowHeight / 2, .4); // new run neede or let run
   fighterAttack = new Attack(attackArray, heroX, heroY, .2);
   zombie = new zombieRun(zombieWalkArray, windowWidth , windowHeight / 2, zombieSpeed);
-  deadZombie = new zombieDead (zombieDeadArray, windowWidth , windowHeight / 2,0.1);
+  deadZombie = new zombieDead (zombieDeadArray, windowWidth , windowHeight / 1.5,0.2);
 }
 
 function draw() {
 
   background(img);
+  if (collide === false){
   zombie.show();
-  zombie.moveForward();
+  zombie.moveForward();}
 
   if (collide === true){
+    deadZombie.dead();
     zombie.reset();
-    zombieSpeed += 1;
+    zombieSpeed += .0002;
+    zombie = new zombieRun(zombieWalkArray, windowWidth , windowHeight / 2, zombieSpeed);
   }
   if (state === 'notAttack') {
     fighter.show();

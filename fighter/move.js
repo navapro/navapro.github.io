@@ -19,7 +19,7 @@ class Run { // camel case capital n??
     }
     moveForward() {
         this.counter += this.speed;
-        if (this.x < windowWidth / 1.2) {// this is fine/1.2
+        if (this.x < windowWidth / 2) {// this is fine/1.2
             this.x += this.speed * 10;
         }
     }
