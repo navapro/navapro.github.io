@@ -26,6 +26,7 @@ let attackkk = true;
 let collide = false;
 let zombieSpeed;
 let zombieDeathCounter = 0;
+let heroFacing = 1;
 
 function preload() {
   loadRun();
@@ -50,7 +51,7 @@ function setup() {
   fighter = new Run(runArray, windowWidth / 4, windowHeight / 2, .4); // new run neede or let run
   fighterAttack = new Attack(attackArray, heroX, heroY, .2);
   zombie = new zombieRun(zombieWalkArray, windowWidth , windowHeight / 2, zombieSpeed);
-  deadZombie = new zombieDead (zombieDeadArray, windowWidth , windowHeight / 1.5,0.05);
+  deadZombie = new zombieDead (zombieDeadArray, windowWidth , windowHeight / 1.5,0.15);
 }
 
 function draw() {
@@ -86,11 +87,13 @@ function draw() {
     }
   }
   if ( state === 'attack') {
-    
+    push();
     fighterAttack.hit();
     attackCounter += .1;
     fighterAttack.gravity();
+    scale(heroFacing, 1);
     collide = collideRectRect(heroX,heroY,250,300,zombieX,zombieY,200,300);
+    pop();
   }
   if (attackCounter > 5) {
     state = 'notAttack';
@@ -99,7 +102,7 @@ function draw() {
   fighter.gravity();
   noFill();
   stroke('red');
-//  rect(heroX,heroY,250,200)
+ rect(heroX,heroY,250,200)
 //  rect(zombieX,zombieY,200,200)
 }
 
