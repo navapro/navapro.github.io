@@ -42,7 +42,7 @@ class zombieDead {
     dead() {
         this.counter += this.speed;
         let runSpeed = floor(this.counter) % this.len
-        image(this.animation[runSpeed], zombieX, zombieY,  250, 250);// whyt thuis .x doesnt work//x and y cpitl or not
+        image(this.animation[runSpeed], zombieX, zombieY,  225, 225);// whyt thuis .x doesnt work//x and y cpitl or not
     }
 
 }

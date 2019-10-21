@@ -25,6 +25,7 @@ let jumping = false;
 let attackkk = true;
 let collide = false;
 let zombieSpeed;
+let zombieDeathCounter = 0;
 
 function preload() {
   loadRun();
@@ -49,22 +50,27 @@ function setup() {
   fighter = new Run(runArray, windowWidth / 4, windowHeight / 2, .4); // new run neede or let run
   fighterAttack = new Attack(attackArray, heroX, heroY, .2);
   zombie = new zombieRun(zombieWalkArray, windowWidth , windowHeight / 2, zombieSpeed);
-  deadZombie = new zombieDead (zombieDeadArray, windowWidth , windowHeight / 1.5,0.2);
+  deadZombie = new zombieDead (zombieDeadArray, windowWidth , windowHeight / 1.5,0.05);
 }
 
 function draw() {
 
   background(img);
-  if (collide === false){
-  zombie.show();
-  zombie.moveForward();}
 
   if (collide === true){
+    if (zombieDeathCounter > 200) {
+      zombie.reset();
+    }
     deadZombie.dead();
-    zombie.reset();
+    zombieDeathCounter += 1
+    
     zombieSpeed += .0002;
     zombie = new zombieRun(zombieWalkArray, windowWidth , windowHeight / 2, zombieSpeed);
   }
+  else {
+    zombie.show();
+    zombie.moveForward();}
+  
   if (state === 'notAttack') {
     fighter.show();
     collide = false;
