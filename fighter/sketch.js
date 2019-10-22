@@ -3,7 +3,8 @@
 // 22- oct - 2019
 // use the state variable for menu page and starting the game.
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// I used rotate and translate.
+// I used html to add gif image as background.
 
 // Define all the variables.
 let heroRunArray = [];
