@@ -23,17 +23,20 @@ class Run { // camel case capital n??
     }
     moveForward() {
         this.counter += this.speed;
-        if (this.x < windowWidth / 2) {// this is fine/1.2
+        if (this.x < windowWidth / 1.5) {// this is fine/1.2
             this.x += this.speed * 15;
         }
         heroFacing = 1;
+        collideVariable = 0;
+
     }
     moveBackward() {
         this.counter += this.speed;
         if (this.x > 0) {
-            this.x += this.speed * -10;
+            this.x += this.speed * -15;
         }
         heroFacing = -1;
+        collideVariable = 250;
     }
     jump() {
         if (this.y > windowHeight / 10) {
@@ -71,7 +74,7 @@ class Attack {
         scale(heroFacing, 1);
         this.counter += this.speed;
         let runSpeed = floor(this.counter) % this.len
-        image(this.animation[runSpeed], 0, 0, 350, 308);// whyt thuis .x doesnt work
+        image(this.animation[runSpeed], 0, 0, 350, 308);
         pop();
     }
 

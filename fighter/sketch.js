@@ -15,7 +15,7 @@ let zombie0,zombie1,zombie2,zombie3,zombie4,zombie5;
 let zombieDead0,zombieDead1,zombieDead2,zombieDead3,zombieDead4,zombieDead5,zombieDead6,zombieDead7;
 let fighter, fighterAttack;
 let img;
-let state = 'notAttack';
+let attackState = 'notAttack';
 let heroX, heroY;
 let zombieX,zombieY;
 let attackCounter = 0;
@@ -27,20 +27,22 @@ let collide = false;
 let zombieSpeed;
 let zombieDeathCounter = 0;
 let heroFacing = 1;
+let collideVariable;
+let state = "menu";
+let click;
+let play;
 
 function preload() {
   loadRun();
   loadAttack();
   loadZombie1();
   loadZombie1Dead();
+  play = loadImage("assets/play.png");
 }
 
 
 function setup() {
   let cnv = createCanvas(windowWidth,windowHeight);
-  // positions canvas 50px to the right and 100px
-  // https://p5js.org/reference/#/p5.Element/position//https://www.youtube.com/watch?v=OIfEHD3KqCg//
-  // cnv.position(50, 100);
   zombieSpeed = 0.05;
 
   runArray = [run1, run2, run3, run4, run5, run6, run7, run8, run9, run10];
@@ -56,8 +58,15 @@ function setup() {
 
 function draw() {
 
+  if (state === "menu") {
+    showMenu();
+    checkIfButtonClicked();
+  }
+else if (state === "game"){
   background(img);
-
+  if (zombieX <0){
+    zombie.reset();
+  }
   if (collide === true){
     if (zombieDeathCounter > 200) {
       zombie.reset();
@@ -72,7 +81,7 @@ function draw() {
     zombie.show();
     zombie.moveForward();}
   
-  if (state === 'notAttack') {
+  if (attackState === 'notAttack') {
     fighter.show();
     collide = false;
 
@@ -86,24 +95,24 @@ function draw() {
       fighter.jump();
     }
   }
-  if ( state === 'attack') {
+  if ( attackState === 'attack') {
     push();
     fighterAttack.hit();
     attackCounter += .1;
     fighterAttack.gravity();
     scale(heroFacing, 1);
-    collide = collideRectRect(heroX,heroY,250,300,zombieX,zombieY,200,300);
+    collide = collideRectRect(heroX - collideVariable ,heroY,250,300,zombieX,zombieY,200,300);
     pop();
   }
   if (attackCounter > 5) {
-    state = 'notAttack';
+    attackState = 'notAttack';
     attackCounter = 0;
   }
   fighter.gravity();
   noFill();
   stroke('red');
- rect(heroX,heroY,250,200)
-//  rect(zombieX,zombieY,200,200)
+
+}
 }
 
 
@@ -111,10 +120,10 @@ function keyPressed() {
 
   if (keyCode === 32) {
     //atackkk = trute;
-    state = 'attack';
+    attackState = 'attack';
   }
   else {
-   state = 'notAttack';
+   attackState = 'notAttack';
   }
   if (keyCode === 39) {
     movingForward = true;
@@ -137,8 +146,18 @@ function keyReleased() {
   if (keyCode === 38) {
     jumping = false;
   }
-  //if (keyCode === 32) {
-   // attackkk = false;
-  // }
 
+}
+function showMenu() {
+  fill(255, 0, 0, 125);
+  image(play, width / 2.7, height / 2, 400,200);
+}
+function checkIfButtonClicked() {
+  if (mouseIsPressed) {
+  
+  click = collidePointRect(mouseX,mouseY,width/2.7, height/2, 400,200);
+  if(click === true){
+    state = "game";
+  }
+}
 }

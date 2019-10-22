@@ -20,9 +20,7 @@
     }
     moveForward() {
         this.counter += this.speed;
-        if (this.x > 0) {// this is fine/1.2
-            this.x += this.speed * -50;
-        }
+        this.x += this.speed * -50;
     }
     reset(){
         this.x = this.resetX;
