@@ -12,7 +12,6 @@ class Run { // camel case capital n??
 
     show() {
         let runSpeed = floor(this.counter) % this.len
-        //imageMode(CENTER);
         push();
         translate(this.x, this.y);
         scale(heroFacing, 1);
@@ -39,8 +38,8 @@ class Run { // camel case capital n??
         collideVariable = 250;
     }
     jump() {
-        if (this.y > windowHeight / 10) {
-            if (this.y - 20 > windowHeight / 10){ //this deosnt work
+        if (this.y > windowHeight / 500) {
+            if (this.y - 20 > windowHeight / 500){ //this deosnt work
             this.y -= 20;
             }
         }

@@ -5,8 +5,9 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let runArray = [];
-let attackArray = [];
+// Define all the variables.
+let heroRunArray = [];
+let heroAttackArray = [];
 let zombieWalkArray = [];
 let zombieDeadArray = [];
 let run1, run2, run3, run4, run5, run6, run7, run8, run9, run10;
@@ -15,16 +16,15 @@ let zombie0,zombie1,zombie2,zombie3,zombie4,zombie5;
 let zombieDead0,zombieDead1,zombieDead2,zombieDead3,zombieDead4,zombieDead5,zombieDead6,zombieDead7;
 let fighter, fighterAttack;
 let img;
-let attackState = 'notAttack';
+let attack = false;
 let heroX, heroY;
 let zombieX,zombieY;
 let attackCounter = 0;
 let movingForward = false;
 let movingBackwards = false;
 let jumping = false;
-let attackkk = true;
 let collide = false;
-let zombieSpeed;
+let zombieSpeed = 0.05;
 let zombieDeathCounter = 0;
 let heroFacing = 1;
 let collideVariable;
@@ -32,98 +32,134 @@ let state = "menu";
 let click;
 let play;
 
+// Preloading all the images on a different js file.
 function preload() {
-  loadRun();
-  loadAttack();
+  loadHeroRun();
+  loadHeroAttack();
   loadZombie1();
   loadZombie1Dead();
   play = loadImage("assets/play.png");
+  img = loadImage("assets/bg3.gif");
 }
 
-
+// Create the canvas and set the size.
 function setup() {
-  let cnv = createCanvas(windowWidth,windowHeight);
-  zombieSpeed = 0.05;
+  createCanvas(windowWidth,windowHeight);
 
-  runArray = [run1, run2, run3, run4, run5, run6, run7, run8, run9, run10];
-  attackArray = [attack0, attack1, attack2, attack3, attack4, attack5, attack6, attack7, attack8, attack9];
+  // Place the images in arrays.
+  heroRunArray = [run1, run2, run3, run4, run5, run6, run7, run8, run9, run10];
+  heroAttackArray = [attack0, attack1, attack2, attack3, attack4, attack5, attack6, attack7, attack8, attack9];
   zombieWalkArray = [zombie0,zombie1,zombie2,zombie3,zombie4,zombie5];
   zombieDeadArray = [zombieDead0,zombieDead1,zombieDead2,zombieDead3,zombieDead4,zombieDead5,zombieDead6,zombieDead7];
 
-  fighter = new Run(runArray, windowWidth / 4, windowHeight / 2, .4); // new run neede or let run
-  fighterAttack = new Attack(attackArray, heroX, heroY, .2);
+  // place the image arrays and other information into classes to create charecters.
+  fighter = new Run(heroRunArray, windowWidth / 4, windowHeight / 2, .4); 
+  fighterAttack = new Attack(heroAttackArray, heroX, heroY, .2);
   zombie = new zombieRun(zombieWalkArray, windowWidth , windowHeight / 2, zombieSpeed);
   deadZombie = new zombieDead (zombieDeadArray, windowWidth , windowHeight / 1.5,0.15);
 }
 
 function draw() {
 
+  // checking if the state is menu and if it is then displaying menu and checking play button is clicked.
   if (state === "menu") {
     showMenu();
     checkIfButtonClicked();
   }
+
+  // if state is game then start the game.
 else if (state === "game"){
+
+  // setting the background image.
   background(img);
+
+  // if the zombie is outside the screen reset it's position.
   if (zombieX <0){
     zombie.reset();
   }
-  if (collide === true){
+
+  // if  the zombie and hero is coliding and hero is attacking then zombie is dead.
+  if (collide === true && attack === true){
+
+    // checking if all the images in the array is shown and then reset.
     if (zombieDeathCounter > 200) {
       zombie.reset();
     }
+
+    // play the dead zombie image array and increase the counter to keep track of images shown.
     deadZombie.dead();
     zombieDeathCounter += 1
     
+    // increase the zombie's speed and re drawing the zombie.
     zombieSpeed += .0002;
     zombie = new zombieRun(zombieWalkArray, windowWidth , windowHeight / 2, zombieSpeed);
   }
+
+  // if  the zombie and hero is coliding and hero is not attacking then hero is dead and go back to menu page.
+  if (collide === true && attack === false){
+
+    // resetting the charecters position.
+    fighter = new Run(heroRunArray, windowWidth / 4, windowHeight / 2, .4);
+    zombie = new zombieRun(zombieWalkArray, windowWidth , windowHeight / 2, zombieSpeed);
+    heroFacing = 1;
+
+    state = "menu";
+  }
+
+  // if the charecters are not colliding then move the zombie forward.
   else {
     zombie.show();
-    zombie.moveForward();}
+    zombie.moveForward();
+  }
   
-  if (attackState === 'notAttack') {
-    fighter.show();
-    collide = false;
+  // if the hero is not attcking display the hero and move it according to the inputs.
+  if (attack === false) {
 
+    fighter.show();
+    // if movingForward is true move the hero forward.
     if (movingForward) {
       fighter.moveForward();
     }
+    // if movingBackward is true move the hero Backward.
     if (movingBackwards) {
       fighter.moveBackward();
     }
+
+    // if jumping is true make the hero jump.
     if (jumping) {
       fighter.jump();
     }
   }
-  if ( attackState === 'attack') {
+
+  // if attack is true play the attack animation.
+  if (attack) {
     push();
     fighterAttack.hit();
+
+    // increse the attack counter by one to keep track of the images shown.
     attackCounter += .1;
+
+    
     fighterAttack.gravity();
     scale(heroFacing, 1);
-    collide = collideRectRect(heroX - collideVariable ,heroY,250,300,zombieX,zombieY,200,300);
+
     pop();
   }
   if (attackCounter > 5) {
-    attackState = 'notAttack';
+    attack = false;
     attackCounter = 0;
   }
   fighter.gravity();
-  noFill();
-  stroke('red');
+  collide = collideRectRect(heroX - collideVariable ,heroY,250,300,zombieX,zombieY,200,300);
 
 }
 }
 
-
+// checking if key is pressed.
 function keyPressed() {
 
   if (keyCode === 32) {
-    //atackkk = trute;
-    attackState = 'attack';
-  }
-  else {
-   attackState = 'notAttack';
+    attack = true;
   }
   if (keyCode === 39) {
     movingForward = true;
@@ -136,26 +172,37 @@ function keyPressed() {
   }
 }
 
+// checking if key is released.
 function keyReleased() {
+
+  // if right arrow key is released set movingForward to false.
   if (keyCode === 39) {
     movingForward = false;
   }
+
+  // if left arrow key is released set movingBackward to false.
   if (keyCode === 37) {
     movingBackwards = false;
   }
+
+  // if up arrow key is released set jumping to false.
   if (keyCode === 38) {
     jumping = false;
   }
-
 }
+
+// show a play button image.
 function showMenu() {
-  fill(255, 0, 0, 125);
   image(play, width / 2.7, height / 2, 400,200);
 }
+
+// check if mouse is clicked and if the mouse pointer is inside the playbutton.
 function checkIfButtonClicked() {
+
   if (mouseIsPressed) {
-  
   click = collidePointRect(mouseX,mouseY,width/2.7, height/2, 400,200);
+
+  // if the mouse pointer is inside the play button then switch the state to game.
   if(click === true){
     state = "game";
   }

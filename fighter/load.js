@@ -1,4 +1,6 @@
-function loadRun() {
+
+// load all the hero running images.
+function loadHeroRun() {
   run1 = loadImage("assets/run/run (1).png");
   run2 = loadImage("assets/run/run (2).png");
   run3 = loadImage("assets/run/run (3).png");
@@ -9,10 +11,10 @@ function loadRun() {
   run8 = loadImage("assets/run/run (8).png");
   run9 = loadImage("assets/run/run (9).png");
   run10 = loadImage("assets/run/run (10).png");
-  img = loadImage("assets/bg3.gif");
 }
 
-function loadAttack() {
+// load all the hero attacking images.
+function loadHeroAttack() {
   attack0 = loadImage("assets/attack/attack(0).png");
   attack1 = loadImage("assets/attack/attack(1).png");
   attack2 = loadImage("assets/attack/attack(2).png");
@@ -25,6 +27,7 @@ function loadAttack() {
   attack9 = loadImage("assets/attack/attack(9).png");
 }
 
+// load all the zombie walking images.
 function loadZombie1() {
   zombie0 = loadImage("assets/Zombie1/Walk1.png");
   zombie1 = loadImage("assets/Zombie1/Walk2.png");
@@ -33,6 +36,8 @@ function loadZombie1() {
   zombie4 = loadImage("assets/Zombie1/Walk5.png");
   zombie5 = loadImage("assets/Zombie1/Walk6.png");
 }
+
+// load all the zombie dying images.
 function loadZombie1Dead() {
   zombieDead0 = loadImage("assets/zombie1/Dead1.png");
   zombieDead1 = loadImage("assets/zombie1/Dead2.png");
