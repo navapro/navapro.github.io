@@ -1,7 +1,7 @@
-// Project Title
-// Your Name
-// Date
-//
+// State variable assignment.
+// Navaneeth Krishna.
+// 22- oct - 2019
+// use the state variable for menu page and starting the game.
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
