@@ -54,9 +54,9 @@ function setup() {
 
   // place the image arrays and other information into classes to create charecters.
   fighter = new Run(heroRunArray, windowWidth / 4, windowHeight / 2, .4); 
-  fighterAttack = new Attack(heroAttackArray, heroX, heroY, .2);
+  fighterAttack = new Attack(heroAttackArray, .2);
   zombie = new zombieRun(zombieWalkArray, windowWidth , windowHeight / 2, zombieSpeed);
-  deadZombie = new zombieDead (zombieDeadArray, windowWidth , windowHeight / 1.5,0.15);
+  deadZombie = new ZombieDead (zombieDeadArray,0.15);
 }
 
 function draw() {
@@ -134,21 +134,26 @@ else if (state === "game"){
   // if attack is true play the attack animation.
   if (attack) {
     push();
+
     fighterAttack.hit();
 
     // increse the attack counter by one to keep track of the images shown.
     attackCounter += .1;
 
-    
+    // integrate gravity and oreant the hero acording to the direction that its facing.
     fighterAttack.gravity();
     scale(heroFacing, 1);
 
     pop();
   }
+
+  // if attack counter is more than 5 set attack to false and attack counter to 0.
   if (attackCounter > 5) {
     attack = false;
     attackCounter = 0;
   }
+
+  // gravity for the hero.
   fighter.gravity();
   collide = collideRectRect(heroX - collideVariable ,heroY,250,300,zombieX,zombieY,200,300);
 
@@ -158,15 +163,22 @@ else if (state === "game"){
 // checking if key is pressed.
 function keyPressed() {
 
+  // if right space bar is pressed set attack to true.
   if (keyCode === 32) {
     attack = true;
   }
+
+  // if right arrow key is pressed set movingForward to true.
   if (keyCode === 39) {
     movingForward = true;
   }
+  
+  // if left arrow key is pressed set movingBackward to true.
   if (keyCode === 37) {
     movingBackwards = true;
   }
+  
+  // if up arrow key is pressed set jumping to true.
   if (keyCode === 38) {
     jumping = true;
   }
