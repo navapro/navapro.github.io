@@ -1,10 +1,12 @@
 // State variable assignment.
 // Navaneeth Krishna.
 // 22- oct - 2019
-// use the state variable for menu page and starting the game.
+// used the state variable for menu page and starting the game.
 // Extra for Experts:
-// I used rotate and translate.
-// I used html to add gif image as background.
+//  -used rotate and translate.
+//  -used html to add gif image as background.
+//  -used class.
+//  -make the zombie kill the hero (AI).
 
 // Define all the variables.
 let heroRunArray = [];
