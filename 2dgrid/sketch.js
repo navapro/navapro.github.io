@@ -34,7 +34,7 @@ function keyTyped() {
     grid = createEmptyGrid();
   }
   if (key === " ") {
-    update();
+            
   }
 }
 
