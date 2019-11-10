@@ -2,6 +2,7 @@
 let rectX = 0;
 let rectY = 0;
 let box;
+let prevX,prevY;
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
@@ -14,6 +15,12 @@ function draw() {
   box.show();
   box.gravity();
 }
+function keyPressed() {
+ box.jump();
+
+ 
+}
+
 
 class Run { 
   constructor(x,y){
@@ -28,8 +35,15 @@ class Run {
     rect(floor(this.x),floor(this.y),100,100);
   }
   gravity() {
-    if (this.y < windowHeight / 1.2) {
-        this.y += 4;
+    if (this.y < windowHeight / 1.19) {
+        this.y += 9.8;
     }
+  }
+  jump() {
+     this.x = prevX;
+    this.y = prevY;
+    if (this.y > windowHeight/5) {
+      this.y -= 20;
+  }
 }
 }
