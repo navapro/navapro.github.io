@@ -5,15 +5,24 @@ let box;
 let prevX,prevY;
 let jumping,movingBackward,movingForward;
 let speed = 1.5;
+let grid =[];
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
   box = new Run(rectX,rectY); 
 
+  grid = [
+    [7, 7, 8, 8, 8, 8, 8, 8],
+    [0, 7, 7, 7, 7, 8, 8, 8],
+    [1, 7, 7, 7, 7, 7, 7, 7],
+    [2, 3, 7, 7, 6, 7, 6, 7],
+    [4, 2, 5, 5, 5, 5, 5, 5]
+        ]
+
 }
 
 function draw() {
-  background(0,0,0,20)
+  background(0,0,0,70)
   box.show();
   box.gravity();
   if (jumping){

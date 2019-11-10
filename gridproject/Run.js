@@ -7,7 +7,7 @@ class Run {
     let fillColor = ['#FF0000', '#FFC000', '#FFFC00', '#FF0000', '#00FFFF', '#FF0000'];
     fill(fillColor[0]);
     noStroke();
-    rect(this.x, this.y, 100, 100);// floor or notfloor(
+    rect(this.x, this.y, 50, 50);// floor or notfloor(
   }
   gravity() {
     if (this.y < windowHeight / 1.19) {
