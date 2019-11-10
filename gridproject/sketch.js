@@ -3,6 +3,8 @@ let rectX = 0;
 let rectY = 0;
 let box;
 let prevX,prevY;
+let jumping,movingBackward,movingForward;
+let speed = 1.5;
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
@@ -14,36 +16,52 @@ function draw() {
   background(0,0,0,20)
   box.show();
   box.gravity();
+  if (jumping){
+  box.jump();
+  }
+  if (movingForward){
+    box.forward();
+  }
+  if (movingBackward){
+    box.backward();
+  }
 }
+
 function keyPressed() {
- box.jump();
 
- 
-}
+  // if right space bar is pressed set attack to true.
 
-
-class Run { 
-  constructor(x,y){
-    this.x = x;
-    this.y = y;
+  // if right arrow key is pressed set movingForward to true.
+  if (keyCode === 39) {
+    movingForward = true;
   }
-
-  show(){
-    let fillColor = [ '#FF0000','#FFC000','#FFFC00','#FF0000','#00FFFF','#FF0000'];
-    fill(fillColor[0]);
-    noStroke();
-    rect(floor(this.x),floor(this.y),100,100);
+  
+  // if left arrow key is pressed set movingBackward to true.
+  if (keyCode === 37) {
+    movingBackward = true;
   }
-  gravity() {
-    if (this.y < windowHeight / 1.19) {
-        this.y += 9.8;
-    }
-  }
-  jump() {
-     this.x = prevX;
-    this.y = prevY;
-    if (this.y > windowHeight/5) {
-      this.y -= 20;
+  
+  // if up arrow key is pressed set jumping to true.
+  if (keyCode === 38) {
+    jumping = true;
   }
 }
+
+// checking if key is released.
+function keyReleased() {
+
+  // if right arrow key is released set movingForward to false.
+  if (keyCode === 39) {
+    movingForward = false;
+  }
+
+  // if left arrow key is released set movingBackward to false.
+  if (keyCode === 37) {
+    movingBackward = false;
+  }
+
+  // if up arrow key is released set jumping to false.
+  if (keyCode === 38) {
+    jumping = false;
+  }
 }
