@@ -9,17 +9,23 @@ let grid =[];
 let col = 8;
 let row = 5;
 let grid0,grid1,grid2,grid3,grid4,grid5,grid6,grid7,grid8;
+let imageCounter = 0;
+let gridImages =[];
+let charecter;
+let cx = 100;
+let cy = 100;
 
 function preload(){
-    grid0 = loadImage("assets/0.png");
-    grid1 = loadImage("assets/1.png");
-    grid2 = loadImage("assets/2.png");
-    grid3 = loadImage("assets/3.png");
-    grid4 = loadImage("assets/4.png");
-    grid5 = loadImage("assets/5.png");
-    grid6 = loadImage("assets/6.png");
-    grid7 = loadImage("assets/7.png");
-    grid8 = loadImage("assets/8.png");
+    grid0 = loadImage("assets/0t.png");
+    grid1 = loadImage("assets/1t.png");
+    grid2 = loadImage("assets/2t.png");
+    grid3 = loadImage("assets/3t.png");
+    grid4 = loadImage("assets/4t.png");
+    grid5 = loadImage("assets/5t.png");
+    grid6 = loadImage("assets/6t.png");
+    grid7 = loadImage("assets/7t.png");
+    grid8 = loadImage("assets/8t.png");
+    charecter = loadImage("assets/Picture1.png");
 }
 
 function setup() {
@@ -33,60 +39,42 @@ function setup() {
     [2, 3, 7, 7, 6, 7, 6, 7],
     [4, 2, 5, 5, 5, 5, 5, 5]
         ];
+  gridImages = [grid0,grid1,grid2,grid3,grid4,grid5,grid6,grid7,grid8];
 }
 
 function draw() {
   background(0,0,0,70);
+  
+  
+
+  box.show();
+  box.gravity();
+  if (jumping){
+  box.jump();
+  }
+  if (movingForward){
+    box.forward();
+  }
+  if (movingBackward){
+    box.backward();
+  }
   displayGrid(grid);
-
-
-  // box.show();
-  // box.gravity();
-  // if (jumping){
-  // box.jump();
-  // }
-  // if (movingForward){
-  //   box.forward();
-  // }
-  // if (movingBackward){
-  //   box.backward();
-  // }
 }
 
 function displayGrid(theGrid) {
-  //assumes the grid is a square...
-  for (let y = 0; y < theGrid[0].length; y++) {
-    for (let x = 0; x < theGrid[0].length; x++) {
-      if (theGrid[y][x] === 0) {
-        fill(255);
-      }
-      else if (theGrid[y][x] === 1) {
-        fill('red');
-      }
-      else if (theGrid[y][x] === 2) {
-        fill('red');
-      }
-      else if (theGrid[y][x] === 3) {
-        fill('red');
-      }
-      else if (theGrid[y][x] === 4) {
-        fill('red');
-      }
-      else if (theGrid[y][x] === 5) {
-        fill('red');
-      }
-      else if (theGrid[y][x] === 6) {
-        fill('blue');
-      }
-      else if (theGrid[y][x] === 7) {
-        fill('pink');
-      }
-      else {
-        fill('grey');
-      }
+ 
+  for (let y = 0; y < 5; y++) {
+    for (let x = 0; x < 8; x++) {
+      imageCounter = theGrid[y][x];
+     
+      
       let cellHeight= height / row;
       let cellWidth = width / col;
-      rect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+      //rect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+      image(gridImages[imageCounter], x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+      //image(charecter, cx,cy,50,50);
+      rect(cx, cy, 50, 50);
+      
     }
   }
 }
