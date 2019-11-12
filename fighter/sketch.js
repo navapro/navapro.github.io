@@ -48,7 +48,6 @@ function preload() {
 // Create the canvas and set the size.
 function setup() {
   createCanvas(windowWidth,windowHeight);
-  
 
   // Place the images in arrays.
   heroRunArray = [run1, run2, run3, run4, run5, run6, run7, run8, run9, run10];

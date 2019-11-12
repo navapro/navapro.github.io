@@ -35,7 +35,7 @@ class Run {
     // increse the x value by a multiple of speed and increse te counter to switch image.
     moveForward() {
         this.counter += this.speed;
-        if (this.x < windowWidth / 1.5) {
+        if (this.x < windowWidth / 1.5) {// this is fine/1.2
             this.x += this.speed * 15;
         }
 
