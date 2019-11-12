@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-// WASD in Grid Demo
-
-let grid;
-let rows = 30;
-let cols = 30;
-let playerX = 15;
-let playerY = 15;
-
-function setup() {
-  if (windowWidth > windowHeight) {
-    createCanvas(windowHeight, windowHeight);
-  }
-  else {
-    createCanvas(windowWidth, windowWidth);
-  }
-  grid = createEmptyGrid(cols, rows);
-  grid[playerY][playerX] = 1;
-=======
 
 let rectX = 0;
 let rectY = 0;
@@ -77,7 +58,6 @@ function setup() {
   
   cellHeight= height / row;
   cellWidth = width / col;
->>>>>>> 166c5de08cc96662c166c6ccb4a8964b0eb30dec
 }
 
 function draw() {

@@ -1,47 +1,46 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
 
-let george;
+let theFireworks = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  george = new Walker();
 }
 
 function draw() {
- george.display();
- george.move();
+  background(255);
+  for (let i = 0; i < theFireworks.length; i++) {
+    theFireworks[i].move();
+    theFireworks[i].display();
+  }
+
+ 
+
 }
-class Walker{
-  constructor(name){
-    this.x = width/2;
-    this.y = height/2;
-    this.fillColor = color (random(255),random(255),random(255));
-    this.stepSize =6;
-    this.radius = 3;
-  }
-display(){
-  fill(this.fillColor);
-  noStroke();
-  circle(this.x,this.y,this,this.radius*2);
-}
-move(){
-  let choice = random(100);
-  if (choice <25){
-    this.y -=this.stepSize;
-  }
-  if (choice <50){
-    this.y +=this.stepSize;
-  }
-  if (choice <75){
-    this.x -=this.stepSize;
-  }
-  else{
-    this.x +=this.stepSize;
+
+function mousePressed() {
+
+  for (let i = 0; i < 100; i++){
+    let myFirework = new Bullet(mouseX, mouseY, random(-3,3), random(-3, 3), 10);
+    theFireworks.push(myFirework);
   }
 }
+
+class Bullet {
+  constructor(x, y, dx, dy, radius) {
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.radius = radius;
+  }
+
+  display() {
+    fill(0);
+    circle(this.x, this.y, this.radius * 2);
+  }
+
+  move() {
+    this.x += this.dx;
+    this.y += this.dy;
+  }
+  
 }
