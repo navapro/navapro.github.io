@@ -135,8 +135,8 @@ function keyTyped() {
   collides();
   push();
   fill('yellow');
-   rect(width/1.335,height/1.45,width/8,10);
-   rect(cx+20,cy,50,10);
+   rect(width/2,height/1.45,width/8,10);
+   rect(cx +20,cy,50,10);
   pop();
 
   }
@@ -298,8 +298,9 @@ function collides(){
           
         
       
-          if (spot === 6 || spot === 5 ){
-            collideTop= collideRectRect(cx+20,cy,50,20,width/1.335,height/1.45,width/8,10);
+          if (spot === 6 || spot === 4 ){
+            collideTop= collideRectRect(cx+20,cy,50,50,width/1.335,height/1.45,width/8,40);
+            collideTop= collideRectRect(cx+20,cy,50,50,width/2,height/1.45,width/8,40);
             console.log(collideTop);
           }
           else{
