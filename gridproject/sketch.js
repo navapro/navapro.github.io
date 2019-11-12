@@ -26,6 +26,7 @@ let gravityC = 1.38;
 let collidePlatform2 = false;
 let coin;
 let collectCoin1, collectCoin2;
+let collideTop = false;
 
 function preload(){
     grid0 = loadImage("assets/0t.png");
@@ -91,12 +92,15 @@ function draw() {
   }
 
  
-
+  if(!collideTop){
   if (jumping){
   if (cy >0){
   box.jump();
   }
+}
   }
+
+
   if (movingForward){
     if (cx < width -70){
     box.forward();
@@ -112,10 +116,10 @@ function draw() {
   displayGrid(grid);
   collides();
   push();
-//   fill('yellow');
-//   rect(width/1.335,height/1.67,width/8,1);
-//   rect(cx+20,cy+50,50,1);
-//  pop();
+  fill('yellow');
+   rect(width/1.335,height/1.45,width/8,10);
+   rect(cx+20,cy,50,10);
+  pop();
 
   }
 
@@ -252,6 +256,18 @@ function collides(){
         // if (collidePlatform){
         //   gravityC = 1.67;
         // }
+    
+          
+        
+      
+          if (spot === 6 || spot === 5 ){
+            collideTop= collideRectRect(cx+20,cy,50,20,width/1.335,height/1.45,width/8,10);
+            console.log(collideTop);
+          }
+          else{
+            
+          collideTop = false;
+          }
       }
       
       
