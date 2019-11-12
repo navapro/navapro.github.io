@@ -1,10 +1,6 @@
-// WASD in Grid Demo
-
 let grid;
 let rows = 30;
 let cols = 30;
-let playerX = 15;
-let playerY = 15;
 
 function setup() {
   if (windowWidth > windowHeight) {
@@ -13,8 +9,7 @@ function setup() {
   else {
     createCanvas(windowWidth, windowWidth);
   }
-  grid = createEmptyGrid(cols, rows);
-  grid[playerY][playerX] = 1;
+  grid = createRandom2dArray(cols, rows);
 }
 
 function draw() {
@@ -32,25 +27,29 @@ function windowResized() {
 }
 
 function keyTyped() {
-  // remove player from current spot
-  grid[playerY][playerX] = 0;
+  if (key === "r") {
+    grid = createRandom2dArray(cols, rows);
+  }
+  if (key === "c") {
+    grid = createEmptyGrid();
+  }
+  if (key === " ") {
+            
+  }
+}
 
-  // move the player
-  if (key === "w" && playerY > 0) {
-    playerY -= 1;
-  }
-  if (key === "s" && playerY < rows - 1) {
-    playerY += 1;
-  }
-  if (key === "d" && playerX < cols - 1) {
-    playerX += 1;
-  }
-  if (key === "a" && playerX > 0) {
-    playerX -= 1;
-  }
+function mousePressed() {
+  let cellSize = width/cols;
 
-  // put player back into grid
-  grid[playerY][playerX] = 1;
+  let xCoord = floor(mouseX / cellSize);
+  let yCoord = floor(mouseY / cellSize);
+  
+  if (grid[yCoord][xCoord] === 1) {
+    grid[yCoord][xCoord] = 0;
+  }
+  else {
+    grid[yCoord][xCoord] = 1;
+  }
 }
 
 function createEmptyGrid() {
@@ -62,6 +61,48 @@ function createEmptyGrid() {
     }
   }
   return emptyGrid;
+}
+
+function update() {
+  let nextTurn = createEmptyGrid();
+
+  for (let x = 0; x < cols; x++) {
+    for (let y = 0; y < rows; y++) {
+      let neighbors = 0;
+
+      //loop around the neighbor spots...
+      for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+          //deal with edge cases
+          if (x+i >= 0 && x+i < cols && y+j >= 0 && y+j < rows) {
+            neighbors += grid[y+j][x+i];
+          }
+        }
+      }
+      //don't count self as a neighbor
+      neighbors -= grid[y][x];
+
+      //apply rules!
+      if (grid[y][x] === 1) { //currently alive
+        if (neighbors === 2 || neighbors === 3) {
+          nextTurn[y][x] = 1;
+        }
+        else {
+          nextTurn[y][x] = 0;
+        }
+      }
+
+      if (grid[y][x] === 0) { //currently dead
+        if (neighbors === 3) {
+          nextTurn[y][x] = 1;
+        }
+        else {
+          nextTurn[y][x] = 0;
+        }
+      }
+    }
+  }
+  grid = nextTurn;
 }
 
 function displayGrid(grid, rows, cols) {
@@ -77,4 +118,20 @@ function displayGrid(grid, rows, cols) {
       rect(x*cellSize, y*cellSize, cellSize, cellSize);
     }
   }
+}
+
+function createRandom2dArray(cols, rows) {
+  let randomGrid = [];
+  for (let x = 0; x < cols; x++) {
+    randomGrid.push([]);
+    for (let y = 0; y < rows; y++) {
+      if (random(100) < 50) {
+        randomGrid[x].push(1);
+      }
+      else {
+        randomGrid[x].push(0);
+      }
+    }
+  }
+  return randomGrid;
 }
