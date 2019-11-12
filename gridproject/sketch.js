@@ -22,7 +22,7 @@ let collideGrid =[];
 let down = false;
 let collideGroundPlatform = false;
 let collidePlatform = false;
-let gravityC = 1.38;
+
 let collidePlatform2 = false;
 let coin;
 let collectCoin1, collectCoin2;
@@ -85,15 +85,16 @@ function draw() {
 
   box.show();
 
-    if(!collideGroundPlatform){
+    if(!collideGroundPlatform && !collideGround){
       if(!collidePlatform && !collidePlatform2){
       box.gravity();
       }
   }
 
  
-  if(!collideTop && !collideTop2 ){
+  
   if (jumping){
+  if(!collideTop && !collideTop2 ){
   if (cy >0){
   box.jump();
   }
@@ -101,12 +102,12 @@ function draw() {
   }
 
 
-  if (movingForward){
+  else if (movingForward){
     if (cx < width -70){
     box.forward();
     }
   }
-  if (movingBackward){
+   if (!jumping && movingBackward){
     if(!collideLeft){
     if (cx >0){
     box.backward();
@@ -121,11 +122,7 @@ function draw() {
   }
   displayGrid(grid);
   collides();
-  // push();
-  // fill('yellow');
-  //  rect(width/2,height/1.45,width/8,10);
-  //  rect(cx +20,cy,50,10);
-  // pop();
+  
 
   }
 
@@ -143,7 +140,7 @@ function displayGrid(theGrid) {
       
       //image(charecter, cx,cy,50,50);
        
-      rect(cx+20, cy -20, 50, 50);
+      rect(floor(cx+20), floor(cy -20), 50, 50);
       
     }
   }
@@ -159,17 +156,15 @@ function keyPressed() {
   }
   
   // if left arrow key is pressed set movingBackward to true.
-  if (keyCode === 37) {
+  else if (keyCode === 37) {
     movingBackward = true;
   }
   
   // if up arrow key is pressed set jumping to true.
-  if (keyCode === 38) {
+  else if (keyCode === 38) {
     jumping = true;
   }
-  if (keyCode === 40) {
-    down = true;
-  }
+  
 }
 
 // checking if key is released.
@@ -189,9 +184,7 @@ function keyReleased() {
   if (keyCode === 38) {
     jumping = false;
   }
-  if (keyCode === 40) {
-    down = false;
-  }
+ 
 }
 
 function collides(){
@@ -209,9 +202,8 @@ function collides(){
       
       if (y === playerY && x === playerX){
       if (spot === 1){
-        collideLeft = collideLineRect((playerX +1)*cellWidth,playerY* cellHeight,(playerX +1)*cellWidth,(playerY+ 1 )* cellHeight, cx,cy,50,50);
-        
-        
+        //collideLeft = collideLineRect((playerX +1)*cellWidth,playerY* cellHeight,(playerX +1)*cellWidth,(playerY+ 1 )* cellHeight, cx,cy,50,50);
+        collideLeft = collideRectRect(playerX *cellWidth,playerY* cellHeight, cellWidth,cellHeight,cx,cy,50,50);
         
         }
         else{
@@ -231,6 +223,7 @@ function collides(){
         if (spot === 6||spot === 4||spot === 1){
           collideGround = collideLineRect((playerX)*cellWidth,(playerY+1)*cellHeight,(playerX + 1)*cellWidth,(playerY+1) * cellHeight, cx,cy,50,51);
           //ellipse((x )*cellWidth,(playerY+1) * cellHeight, 10, 10);
+          
         }
         else{
           
