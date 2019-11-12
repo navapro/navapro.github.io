@@ -101,24 +101,6 @@ function draw() {
   }
 
 
-<<<<<<< HEAD
-function keyTyped() {
-  // remove player from current spot
-  grid[playerY][playerX] = 0;
-
-  // move the player
-  if (key === "w" && playerY > 0) {
-    playerY -= 1;
-  }
-  if (key === "s" && playerY < rows - 1) {
-    playerY += 1;
-  }
-  if (key === "d" && playerX < cols - 1) {
-    playerX += 1;
-  }
-  if (key === "a" && playerX > 0) {
-    playerX -= 1;
-=======
   if (movingForward){
     if (cx < width -70){
     box.forward();
@@ -181,7 +163,6 @@ function keyPressed() {
   }
   if (keyCode === 40) {
     down = true;
->>>>>>> 166c5de08cc96662c166c6ccb4a8964b0eb30dec
   }
 
   // put player back into grid
@@ -196,22 +177,6 @@ function keyReleased() {
     movingForward = false;
   }
 
-<<<<<<< HEAD
-function displayGrid(grid, rows, cols) {
-  let cellSize = width / cols;
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-      if (grid[y][x] === 0) {
-        fill(255);
-      }
-      else {
-        fill(0);
-      }
-      rect(x*cellSize, y*cellSize, cellSize, cellSize);
-    }
-  }
-}
-=======
   // if left arrow key is released set movingBackward to false.
   if (keyCode === 37) {
     movingBackward = false;
@@ -322,4 +287,3 @@ function collides(){
   // }
   
   }
->>>>>>> 166c5de08cc96662c166c6ccb4a8964b0eb30dec
