@@ -26,7 +26,7 @@ let gravityC = 1.38;
 let collidePlatform2 = false;
 let coin;
 let collectCoin1, collectCoin2;
-let collideTop = false;
+let collideTop, collideTop2;
 
 function preload(){
     grid0 = loadImage("assets/0t.png");
@@ -92,7 +92,7 @@ function draw() {
   }
 
  
-  if(!collideTop){
+  if(!collideTop && !collideTop2 ){
   if (jumping){
   if (cy >0){
   box.jump();
@@ -113,13 +113,19 @@ function draw() {
   }
   }
   }
+  if(collideLeft){
+    cx += 20;
+  }
+  if(collideGround){
+    cy -= 2;
+  }
   displayGrid(grid);
   collides();
-  push();
-  fill('yellow');
-   rect(width/2,height/1.45,width/8,10);
-   rect(cx +20,cy,50,10);
-  pop();
+  // push();
+  // fill('yellow');
+  //  rect(width/2,height/1.45,width/8,10);
+  //  rect(cx +20,cy,50,10);
+  // pop();
 
   }
 
@@ -137,7 +143,7 @@ function displayGrid(theGrid) {
       
       //image(charecter, cx,cy,50,50);
        
-      rect(cx+20, cy, 50, 50);
+      rect(cx+20, cy -20, 50, 50);
       
     }
   }
@@ -223,7 +229,7 @@ function collides(){
         }
 
         if (spot === 6||spot === 4||spot === 1){
-          collideGround = collideLineRect((playerX)*cellWidth,(playerY+1)*cellHeight,(playerX + 1)*cellWidth,(playerY+1) * cellHeight, cx,cy + 30,50,51);
+          collideGround = collideLineRect((playerX)*cellWidth,(playerY+1)*cellHeight,(playerX + 1)*cellWidth,(playerY+1) * cellHeight, cx,cy,50,51);
           //ellipse((x )*cellWidth,(playerY+1) * cellHeight, 10, 10);
         }
         else{
@@ -261,8 +267,8 @@ function collides(){
         
       
           if (spot === 6 || spot === 4 ){
-            collideTop= collideRectRect(cx+20,cy,50,50,width/1.335,height/1.45,width/8,40);
-            collideTop= collideRectRect(cx+20,cy,50,50,width/2,height/1.45,width/8,40);
+            collideTop= collideRectRect(cx+20,cy,50,50,width/1.335,height/1.45,width/8,25);
+            collideTop2= collideRectRect(cx+20,cy,50,50,width/2,height/1.45,width/8,25);
             console.log(collideTop);
           }
           else{
