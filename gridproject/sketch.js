@@ -30,8 +30,14 @@ function keyTyped() {
   if (key === "r") {
     grid = createRandom2dArray(cols, rows);
   }
-  if (key === "c") {
-    grid = createEmptyGrid();
+  displayGrid(grid);
+  collides();
+  push();
+  fill('yellow');
+   rect(width/1.335,height/1.45,width/8,10);
+   rect(cx+20,cy,50,10);
+  pop();
+
   }
   if (key === " ") {
             
@@ -105,12 +111,40 @@ function update() {
   grid = nextTurn;
 }
 
+<<<<<<< HEAD
 function displayGrid(grid, rows, cols) {
   let cellSize = width / cols;
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (grid[y][x] === 0) {
         fill(255);
+=======
+
+        if (spot === 7 || spot === 8||spot === 3 ){
+          collidePlatform = collideRectRect(cx+20,cy +50,50,20,width/2,height/1.67,width/8,20);
+          collidePlatform2 = collideRectRect(cx+20,cy +50,50,20,width/1.335,height/1.67,width/8,20);
+        }
+        else{
+          
+        collidePlatform = false;
+        gravityC = 1.38;
+        }
+        // if (collidePlatform){
+        //   gravityC = 1.67;
+        // }
+    
+          
+        
+      
+          if (spot === 6 || spot === 5 ){
+            collideTop= collideRectRect(cx+20,cy,50,20,width/1.335,height/1.45,width/8,10);
+            console.log(collideTop);
+          }
+          else{
+            
+          collideTop = false;
+          }
+>>>>>>> parent of 166c5de... collide platform
       }
       else {
         fill(0);
