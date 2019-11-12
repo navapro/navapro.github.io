@@ -14,6 +14,14 @@ let gridImages =[];
 let charecter;
 let cx = 100;
 let cy = 100;
+let playerY,playerX;
+let cellHeight,cellWidth;
+let collideLeft = false;
+let collideGround = false;
+let collideGrid =[];
+let down = false;
+let collideGroundPlatform = false;
+let collidePlatform = false;
 
 function preload(){
     grid0 = loadImage("assets/0t.png");
@@ -36,30 +44,51 @@ function setup() {
     [7, 7, 8, 8, 8, 8, 8, 8],
     [0, 7, 7, 7, 7, 8, 8, 8],
     [1, 7, 7, 7, 7, 7, 7, 7],
-    [2, 3, 7, 7, 6, 7, 6, 7],
+    [2, 0, 7, 7, 6, 7, 6, 7],
     [4, 2, 5, 5, 5, 5, 5, 5]
         ];
+
+  
+  
   gridImages = [grid0,grid1,grid2,grid3,grid4,grid5,grid6,grid7,grid8];
+  cellHeight= height / row;
+  cellWidth = width / col;
 }
 
 function draw() {
+  //console.log(playerX);
   background(0,0,0,70);
-  
-  
 
   box.show();
-  box.gravity();
+
+    if(!collideGroundPlatform && !collidePlatform){
+      box.gravity();
+  }
+
+ 
+
   if (jumping){
+  if (cy >0){
   box.jump();
   }
+  }
   if (movingForward){
+    if (cx < width -70){
     box.forward();
+    }
   }
   if (movingBackward){
+    if(!collideLeft){
+    if (cx >0){
     box.backward();
   }
+  }
+  }
   displayGrid(grid);
-}
+  collides();
+  
+ 
+  }
 
 function displayGrid(theGrid) {
  
@@ -67,13 +96,15 @@ function displayGrid(theGrid) {
     for (let x = 0; x < 8; x++) {
       imageCounter = theGrid[y][x];
      
-      
-      let cellHeight= height / row;
-      let cellWidth = width / col;
+      cellHeight = height / row;
+      cellWidth = width / col;
       //rect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
       image(gridImages[imageCounter], x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+      
+      
       //image(charecter, cx,cy,50,50);
-      rect(cx, cy, 50, 50);
+       
+      rect(cx+20, cy, 50, 50);
       
     }
   }
@@ -97,6 +128,9 @@ function keyPressed() {
   if (keyCode === 38) {
     jumping = true;
   }
+  if (keyCode === 40) {
+    down = true;
+  }
 }
 
 // checking if key is released.
@@ -116,4 +150,79 @@ function keyReleased() {
   if (keyCode === 38) {
     jumping = false;
   }
+  if (keyCode === 40) {
+    down = false;
+  }
 }
+
+function collides(){
+  collideGrid =[
+    [9, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 9, 0, 0, 7, 0, 7, 0],
+    [2, 1, 4, 4, 6, 4, 6, 4],
+    [4, 2, 5, 5, 5, 5, 5, 5]
+        ];
+
+  for (let y = 0; y < 5; y++) {
+    for (let x = 0; x < 8; x++) {
+      let spot = collideGrid[y][x];
+      
+      if (y === playerY && x === playerX){
+      if (spot === 1){
+        collideLeft = collideLineRect((playerX +1)*cellWidth,playerY* cellHeight,(playerX +1)*cellWidth,(playerY+ 1 )* cellHeight, cx,cy,50,50);
+        
+        
+        
+        }
+        else{
+          collideLeft = false;
+          
+         // collideGround = false;
+        }
+        if (spot === 9||spot === 1){
+          collideGroundPlatform = collideLineRect((playerX)*cellWidth,(playerY+1)*cellHeight,(playerX + 1)*cellWidth,(playerY+1) * cellHeight, cx,cy + 20,50,50);
+          
+      }
+        else{
+          
+         collideGroundPlatform = false;
+        }
+
+        if (spot === 6||spot === 4||spot === 1){
+          collideGround = collideLineRect((playerX)*cellWidth,(playerY+1)*cellHeight,(playerX + 1)*cellWidth,(playerY+1) * cellHeight, cx,cy + 30,50,51);
+          //ellipse((x )*cellWidth,(playerY+1) * cellHeight, 10, 10);
+        }
+        else{
+          
+         collideGround = false;
+        }
+      }
+        if ( cx > 420 && cx < 600 ){
+        spot = 7;
+       }
+
+        if (cx > 420 && cx < 600 && cy < 400 && cy > 380){
+            collidePlatform = true;
+        }
+      
+      else{
+          
+         collidePlatform = false;
+        }
+      
+      
+      
+  }
+  }
+  // let collideX = playerX +1;
+  // let collideY1 = playerY +1;
+  // if (playerX === 1 && playerY === 3){
+  //   collide = collideLineRect(collideX*cellWidth,playerY* cellHeight,collideX*cellWidth,collideY1 * cellHeight, cx,cy,50,50);
+  //   }
+  
+  // else{
+  //   collide = false;
+  // }
+  
+  }

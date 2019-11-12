@@ -12,9 +12,13 @@ class Run {
     // floor or notfloor(
       cx = this.x;
       cy = this.y;
+      playerY = floor(cy/ cellHeight);
+      playerX = floor(cx/ cellWidth);
+
+
   }
   gravity() {
-    if (this.y < windowHeight / 1.19) {
+    if (this.y < windowHeight / 1.38) {
       this.y += 9.8;
     }
   }
@@ -27,5 +31,8 @@ class Run {
   }
   backward(){
       this.x -= 20;
+  }
+  down() {
+    this.y += 20;
   }
 }
