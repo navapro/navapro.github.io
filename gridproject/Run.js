@@ -18,12 +18,12 @@ class Run {
 
   }
   gravity() {
-    if (this.y < windowHeight / 1.38) {
-      this.y += 9.8;
+    if (this.y < windowHeight / gravityC) {
+      this.y += 10;
     }
   }
   jump() {
-    this.y -= 20;
+    this.y -= 40;
   }
 
   forward(){

@@ -22,6 +22,10 @@ let collideGrid =[];
 let down = false;
 let collideGroundPlatform = false;
 let collidePlatform = false;
+let gravityC = 1.38;
+let collidePlatform2 = false;
+let coin;
+let collectCoin1, collectCoin2;
 
 function preload(){
     grid0 = loadImage("assets/0t.png");
@@ -34,6 +38,7 @@ function preload(){
     grid7 = loadImage("assets/7t.png");
     grid8 = loadImage("assets/8t.png");
     charecter = loadImage("assets/Picture1.png");
+    coin = loadImage("assets/coin.png");
 }
 
 function setup() {
@@ -43,26 +48,46 @@ function setup() {
   grid = [
     [7, 7, 8, 8, 8, 8, 8, 8],
     [0, 7, 7, 7, 7, 8, 8, 8],
-    [1, 7, 7, 7, 7, 7, 7, 7],
+    [1, 7, 7, 7, 9, 7, 9, 7],
     [2, 0, 7, 7, 6, 7, 6, 7],
     [4, 2, 5, 5, 5, 5, 5, 5]
         ];
-
+  gridImages = [grid0,grid1,grid2,grid3,grid4,grid5,grid6,grid7,grid8,coin];
   
   
-  gridImages = [grid0,grid1,grid2,grid3,grid4,grid5,grid6,grid7,grid8];
   cellHeight= height / row;
   cellWidth = width / col;
 }
 
 function draw() {
+  if (collectCoin1){
+    grid = [
+      [7, 7, 8, 8, 8, 8, 8, 8],
+      [0, 7, 7, 7, 7, 8, 8, 8],
+      [1, 7, 7, 7, 7, 7, 9, 7],
+      [2, 0, 7, 7, 6, 7, 6, 7],
+      [4, 2, 5, 5, 5, 5, 5, 5]
+          ];
+  }
+  if (collectCoin2){
+    grid = [
+      [7, 7, 8, 8, 8, 8, 8, 8],
+      [0, 7, 7, 7, 7, 8, 8, 8],
+      [1, 7, 7, 7, 9, 7, 7, 7],
+      [2, 0, 7, 7, 6, 7, 6, 7],
+      [4, 2, 5, 5, 5, 5, 5, 5]
+          ];
+   
+  }
   //console.log(playerX);
   background(0,0,0,70);
 
   box.show();
 
-    if(!collideGroundPlatform && !collidePlatform){
+    if(!collideGroundPlatform){
+      if(!collidePlatform && !collidePlatform2){
       box.gravity();
+      }
   }
 
  
@@ -86,8 +111,12 @@ function draw() {
   }
   displayGrid(grid);
   collides();
-  
- 
+  push();
+//   fill('yellow');
+//   rect(width/1.335,height/1.67,width/8,1);
+//   rect(cx+20,cy+50,50,1);
+//  pop();
+
   }
 
 function displayGrid(theGrid) {
@@ -159,7 +188,7 @@ function collides(){
   collideGrid =[
     [9, 0, 0, 0, 0, 0, 0, 0],
     [1, 0, 0, 0, 0, 0, 0, 0],
-    [1, 9, 0, 0, 7, 0, 7, 0],
+    [1, 9, 0, 8, 7, 8, 3, 0],
     [2, 1, 4, 4, 6, 4, 6, 4],
     [4, 2, 5, 5, 5, 5, 5, 5]
         ];
@@ -197,20 +226,33 @@ function collides(){
           
          collideGround = false;
         }
-      }
-        if ( cx > 420 && cx < 600 ){
-        spot = 7;
-       }
+        if (spot === 7 ){
+          collectCoin1 = true;
+        }
+        else {
+          collectCoin1 = false;
+        }
+        if (spot === 3 ){
+          collectCoin2 = true;
+        }
+        else {
+          collectCoin2 = false;
+        }
 
-        if (cx > 420 && cx < 600 && cy < 400 && cy > 380){
-            collidePlatform = true;
+
+        if (spot === 7 || spot === 8||spot === 3 ){
+          collidePlatform = collideRectRect(cx+20,cy +50,50,20,width/2,height/1.67,width/8,20);
+          collidePlatform2 = collideRectRect(cx+20,cy +50,50,20,width/1.335,height/1.67,width/8,20);
         }
-      
-      else{
+        else{
           
-         collidePlatform = false;
+        collidePlatform = false;
+        gravityC = 1.38;
         }
-      
+        // if (collidePlatform){
+        //   gravityC = 1.67;
+        // }
+      }
       
       
   }
