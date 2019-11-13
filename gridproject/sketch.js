@@ -21,8 +21,8 @@ let grid0,grid1,grid2,grid3,grid4,grid5,grid6,grid7,grid8;
 let imageCounter = 0;
 let gridImages =[];
 let charecter;
-let cx = 100;
-let cy = 100;
+let charecterX = 100;
+let charecterY = 100;
 let playerY,playerX;
 let cellHeight,cellWidth;
 let collideLeft = false;
@@ -77,6 +77,8 @@ function setup() {
 }
 
 function draw() {
+
+  // if first coin is picked then change the grid to remove the coin.
   if (collectCoin1){
     grid = [
       [7, 7, 8, 8, 8, 8, 8, 8],
@@ -86,6 +88,8 @@ function draw() {
       [4, 2, 5, 5, 5, 5, 5, 5]
           ];
   }
+
+  // if second coin is picked then change the grid to remove the coin and display the 2nd coin.
   if (collectCoin2){
     grid = [
       [7, 7, 8, 8, 8, 8, 8, 8],
@@ -94,24 +98,22 @@ function draw() {
       [2, 0, 7, 7, 6, 7, 6, 7],
       [4, 2, 5, 5, 5, 5, 5, 5]
           ];
-   
   }
-  //console.log(playerX);
-  background(0,0,0,70);
 
+// show the charecter
   box.show();
 
+  // if collide ground and collide platform if false then apply gravity 
     if(!collideGroundPlatform && !collideGround){
       if(!collidePlatform && !collidePlatform2){
       box.gravity();
       }
   }
 
- 
-  
+// if collide top and collide top 2 if false then let the charecter jump if the up arrow is pressed
   if (jumping){
   if(!collideTop && !collideTop2 ){
-  if (cy >0){
+  if (charecterY >0){
   box.jump();
   }
 }
@@ -119,22 +121,22 @@ function draw() {
 
 
   else if (movingForward){
-    if (cx < width -70){
+    if (charecterX < width -70){
     box.forward();
     }
   }
    if (!jumping && movingBackward){
     if(!collideLeft){
-    if (cx >0){
+    if (charecterX >0){
     box.backward();
   }
   }
   }
   if(collideLeft){
-    cx += 20;
+    charecterX += 20;
   }
   if(collideGround){
-    cy -= 2;
+    charecterY -= 2;
   }
   displayGrid(grid);
   collides();
@@ -154,9 +156,9 @@ function displayGrid(theGrid) {
       image(gridImages[imageCounter], x * cellWidth, y * cellHeight, cellWidth, cellHeight);
       
       
-      //image(charecter, cx,cy,50,50);
+      //image(charecter, charecterX,charecterY,50,50);
        
-      rect(floor(cx+20), floor(cy -20), 50, 50);
+      rect(floor(charecterX+20), floor(charecterY -20), 50, 50);
       
     }
   }
@@ -218,8 +220,8 @@ function collides(){
       
       if (y === playerY && x === playerX){
       if (spot === 1){
-        //collideLeft = collideLineRect((playerX +1)*cellWidth,playerY* cellHeight,(playerX +1)*cellWidth,(playerY+ 1 )* cellHeight, cx,cy,50,50);
-        collideLeft = collideRectRect(playerX *cellWidth,playerY* cellHeight, cellWidth,cellHeight,cx,cy,50,50);
+        //collideLeft = collideLineRect((playerX +1)*cellWidth,playerY* cellHeight,(playerX +1)*cellWidth,(playerY+ 1 )* cellHeight, charecterX,charecterY,50,50);
+        collideLeft = collideRectRect(playerX *cellWidth,playerY* cellHeight, cellWidth,cellHeight,charecterX,charecterY,50,50);
         
         }
         else{
@@ -228,7 +230,7 @@ function collides(){
          // collideGround = false;
         }
         if (spot === 9||spot === 1){
-          collideGroundPlatform = collideLineRect((playerX)*cellWidth,(playerY+1)*cellHeight,(playerX + 1)*cellWidth,(playerY+1) * cellHeight, cx,cy + 20,50,50);
+          collideGroundPlatform = collideLineRect((playerX)*cellWidth,(playerY+1)*cellHeight,(playerX + 1)*cellWidth,(playerY+1) * cellHeight, charecterX,charecterY + 20,50,50);
           
       }
         else{
@@ -237,7 +239,7 @@ function collides(){
         }
 
         if (spot === 6||spot === 4||spot === 1){
-          collideGround = collideLineRect((playerX)*cellWidth,(playerY+1)*cellHeight,(playerX + 1)*cellWidth,(playerY+1) * cellHeight, cx,cy,50,51);
+          collideGround = collideLineRect((playerX)*cellWidth,(playerY+1)*cellHeight,(playerX + 1)*cellWidth,(playerY+1) * cellHeight, charecterX,charecterY,50,51);
           //ellipse((x )*cellWidth,(playerY+1) * cellHeight, 10, 10);
           
         }
@@ -260,8 +262,8 @@ function collides(){
 
 
         if (spot === 7 || spot === 8||spot === 3 ){
-          collidePlatform = collideRectRect(cx+20,cy +50,50,20,width/2,height/1.67,width/8,20);
-          collidePlatform2 = collideRectRect(cx+20,cy +50,50,20,width/1.335,height/1.67,width/8,20);
+          collidePlatform = collideRectRect(charecterX+20,charecterY +50,50,20,width/2,height/1.67,width/8,20);
+          collidePlatform2 = collideRectRect(charecterX+20,charecterY +50,50,20,width/1.335,height/1.67,width/8,20);
         }
         else{
           
@@ -276,8 +278,8 @@ function collides(){
         
       
           if (spot === 6 || spot === 4 ){
-            collideTop= collideRectRect(cx+20,cy,50,50,width/1.335,height/1.45,width/8,25);
-            collideTop2= collideRectRect(cx+20,cy,50,50,width/2,height/1.45,width/8,25);
+            collideTop= collideRectRect(charecterX+20,charecterY,50,50,width/1.335,height/1.45,width/8,25);
+            collideTop2= collideRectRect(charecterX+20,charecterY,50,50,width/2,height/1.45,width/8,25);
             console.log(collideTop);
           }
           else{
@@ -292,7 +294,7 @@ function collides(){
   // let collideX = playerX +1;
   // let collideY1 = playerY +1;
   // if (playerX === 1 && playerY === 3){
-  //   collide = collideLineRect(collideX*cellWidth,playerY* cellHeight,collideX*cellWidth,collideY1 * cellHeight, cx,cy,50,50);
+  //   collide = collideLineRect(collideX*cellWidth,playerY* cellHeight,collideX*cellWidth,collideY1 * cellHeight, charecterX,charecterY,50,50);
   //   }
   
   // else{

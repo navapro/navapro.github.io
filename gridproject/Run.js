@@ -10,12 +10,12 @@ class Run {
 
     fill('#FF0000');
     noStroke();
-    cx = this.x;
-    cy = this.y;
+    charecterX = this.x;
+    charecterY = this.y;
 
     // find which row and column the player is in.
-    playerY = floor(cy / cellHeight);
-    playerX = floor(cx / cellWidth);
+    playerY = floor(charecterY / cellHeight);
+    playerX = floor(charecterX / cellWidth);
 
 
   }
@@ -23,7 +23,7 @@ class Run {
   // add 20 to y position to simulate gravity.
   gravity() {
     if (this.y < windowHeight / 1.358) {
-      this.y += 20;
+      this.y += 10;
     }
   }
 
