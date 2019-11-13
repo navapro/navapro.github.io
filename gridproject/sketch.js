@@ -1,3 +1,12 @@
+// 2d grid assignment.
+// Navaneeth Krishna.
+// 13- nov - 2019
+// used the grid to place the images and for collition.
+// Extra for Experts:
+//  -used 2d grid based collition.
+//  -used class.
+
+// Define all the variables.
 
 let rectX = 0;
 let rectY = 0;
@@ -28,6 +37,7 @@ let coin;
 let collectCoin1, collectCoin2;
 let collideTop, collideTop2;
 
+// Preloading all the images on a different js file.
 function preload(){
     grid0 = loadImage("assets/0t.png");
     grid1 = loadImage("assets/1t.png");
@@ -42,10 +52,14 @@ function preload(){
     coin = loadImage("assets/coin.png");
 }
 
+// Create the canvas and set the size.
 function setup() {
   createCanvas(windowWidth,windowHeight);
+
+  // create the charecter.
   box = new Run(rectX,rectY); 
 
+  // create the 2d array for placing the images.
   grid = [
     [7, 7, 8, 8, 8, 8, 8, 8],
     [0, 7, 7, 7, 7, 8, 8, 8],
@@ -53,9 +67,11 @@ function setup() {
     [2, 0, 7, 7, 6, 7, 6, 7],
     [4, 2, 5, 5, 5, 5, 5, 5]
         ];
+
+  // place all the images in an array.
   gridImages = [grid0,grid1,grid2,grid3,grid4,grid5,grid6,grid7,grid8,coin];
   
-  
+  // set cell size
   cellHeight= height / row;
   cellWidth = width / col;
 }
