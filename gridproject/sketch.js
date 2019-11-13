@@ -5,6 +5,7 @@
 // Extra for Experts:
 //  -used 2d grid based collition.
 //  -used class.
+//  -used transparent pictures to create trail effect.
 
 // Define all the variables.
 
@@ -103,7 +104,7 @@ function draw() {
 // show the charecter
   box.show();
 
-  // if collide ground and collide platform if false then apply gravity 
+  // if collide grounds and collide platforms if false then apply gravity 
     if(!collideGroundPlatform && !collideGround){
       if(!collidePlatform && !collidePlatform2){
       box.gravity();
@@ -111,39 +112,42 @@ function draw() {
   }
 
 // if collide top and collide top 2 if false then let the charecter jump if the up arrow is pressed
-  if (jumping){
-  if(!collideTop && !collideTop2 ){
-  if (charecterY >0){
+
+  if(jumping &&!collideTop && !collideTop2 && charecterY >0){
   box.jump();
-  }
+
 }
-  }
-
-
-  else if (movingForward){
+  
+// if moving forward is true, and not jumping and the charecter is inside the canvas then move forward.
+  else if (movingForward && !jumping){
     if (charecterX < width -70){
     box.forward();
     }
   }
-   if (!jumping && movingBackward){
-    if(!collideLeft){
+
+// if moving backward is true, not jumping and the charecter is inside the canvas then move backward.
+   if (!jumping && movingBackward &&!collideLeft){
     if (charecterX >0){
     box.backward();
   }
   }
-  }
+
+  // adjust the x and y if colliding because of the images.
   if(collideLeft){
     charecterX += 20;
   }
   if(collideGround){
     charecterY -= 2;
   }
-  displayGrid(grid);
-  collides();
-  
 
+  //display the grid
+  displayGrid(grid);
+
+  // run the collide function to check the collition.
+  collides();
   }
 
+//
 function displayGrid(theGrid) {
  
   for (let y = 0; y < 5; y++) {
