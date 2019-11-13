@@ -1,6 +1,6 @@
 
 // create a class and assign variables.
-class Run { 
+class Run {
     constructor(animation, x, y, speed) {
         this.animation = animation;
         this.speed = speed;
@@ -8,10 +8,10 @@ class Run {
         this.len = this.animation.length;
         this.x = x;
         this.y = y;
-        
+
     }
 
-    
+
     //  display the image array and slowly run through the array.
     show() {
 
@@ -51,7 +51,7 @@ class Run {
         if (this.x > 0) {
             this.x += this.speed * -15;
         }
-        
+
         // hero facing is set to -1 for facing backward and colition box need to be adjusted by 250.
         heroFacing = -1;
         collideVariable = 250;
@@ -91,7 +91,7 @@ class Attack {
         translate(heroX, heroY);
         scale(heroFacing, 1);
 
-        
+
         // increse the counter by adding speed then round the counter and use modulo to loop through the array.
         this.counter += this.speed;
         let runSpeed = floor(this.counter) % this.len
