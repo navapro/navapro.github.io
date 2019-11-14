@@ -204,7 +204,10 @@ function keyReleased() {
 
 }
 
+// collition function.
 function collides() {
+
+  // 2d array for collition detection. 
   collideGrid = [
     [9, 0, 0, 0, 0, 0, 0, 0],
     [1, 0, 0, 0, 0, 0, 0, 0],
@@ -213,29 +216,34 @@ function collides() {
     [4, 2, 5, 5, 5, 5, 5, 5]
   ];
 
+  // loop through the collition array
   for (let y = 0; y < 5; y++) {
     for (let x = 0; x < 8; x++) {
       let spot = collideGrid[y][x];
 
+      // checking if the charecter is in the cell that the loop is in.
       if (y === playerY && x === playerX) {
-        if (spot === 1) {
-          //collideLeft = collideLineRect((playerX +1)*cellWidth,playerY* cellHeight,(playerX +1)*cellWidth,(playerY+ 1 )* cellHeight, charecterX,charecterY,50,50);
-          collideLeft = collideRectRect(playerX * cellWidth, playerY * cellHeight, cellWidth, cellHeight, charecterX, charecterY, 50, 50);
 
+        // if the charecter is in the "1" cells then check for collition with the walls. 
+        if (spot === 1) {
+          collideLeft = collideRectRect(playerX * cellWidth, playerY * cellHeight, cellWidth, cellHeight, charecterX, charecterY, 50, 50);
         }
+
+        // if the charecter is  not in the "1" cells then set the collideLeft to false.
         else {
           collideLeft = false;
-
-          // collideGround = false;
         }
+
+        // if the charecter is in the "9" or "1"c ells then check for collition with the ground.
         if (spot === 9 || spot === 1) {
           collideGroundPlatform = collideLineRect((playerX) * cellWidth, (playerY + 1) * cellHeight, (playerX + 1) * cellWidth, (playerY + 1) * cellHeight, charecterX, charecterY + 20, 50, 50);
-
         }
-        else {
 
+        // if the charecter is  not in the "1" or "9" cells then set the collideGround to false.
+        else {
           collideGroundPlatform = false;
         }
+
 
         if (spot === 6 || spot === 4 || spot === 1) {
           collideGround = collideLineRect((playerX) * cellWidth, (playerY + 1) * cellHeight, (playerX + 1) * cellWidth, (playerY + 1) * cellHeight, charecterX, charecterY, 50, 51);
@@ -269,13 +277,7 @@ function collides() {
           collidePlatform = false;
           gravityC = 1.38;
         }
-        // if (collidePlatform){
-        //   gravityC = 1.67;
-        // }
-
-
-
-
+        
         if (spot === 6 || spot === 4) {
           collideTop = collideRectRect(charecterX + 20, charecterY, 50, 50, width / 1.335, height / 1.45, width / 8, 25);
           collideTop2 = collideRectRect(charecterX + 20, charecterY, 50, 50, width / 2, height / 1.45, width / 8, 25);
@@ -290,14 +292,5 @@ function collides() {
 
     }
   }
-  // let collideX = playerX +1;
-  // let collideY1 = playerY +1;
-  // if (playerX === 1 && playerY === 3){
-  //   collide = collideLineRect(collideX*cellWidth,playerY* cellHeight,collideX*cellWidth,collideY1 * cellHeight, charecterX,charecterY,50,50);
-  //   }
-
-  // else{
-  //   collide = false;
-  // }
-
+  
 }
