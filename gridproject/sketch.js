@@ -12,9 +12,7 @@
 let rectX = 0;
 let rectY = 0;
 let box;
-let prevX, prevY;
 let jumping, movingBackward, movingForward;
-let speed = 1.5;
 let grid = [];
 let col = 8;
 let row = 5;
@@ -29,10 +27,8 @@ let cellHeight, cellWidth;
 let collideLeft = false;
 let collideGround = false;
 let collideGrid = [];
-let down = false;
 let collideGroundPlatform = false;
 let collidePlatform = false;
-
 let collidePlatform2 = false;
 let coin;
 let collectCoin1, collectCoin2;
@@ -234,63 +230,70 @@ function collides() {
           collideLeft = false;
         }
 
-        // if the charecter is in the "9" or "1"c ells then check for collition with the ground.
+        // if the charecter is in the "9" or "1" cells then check for collition with the  platform's ground.
         if (spot === 9 || spot === 1) {
           collideGroundPlatform = collideLineRect((playerX) * cellWidth, (playerY + 1) * cellHeight, (playerX + 1) * cellWidth, (playerY + 1) * cellHeight, charecterX, charecterY + 20, 50, 50);
         }
 
-        // if the charecter is  not in the "1" or "9" cells then set the collideGround to false.
+        // if the charecter is  not in the "1" or "9" cells then set the collideGroundPlatform to false.
         else {
           collideGroundPlatform = false;
         }
 
-
+        // if the charecter is in the "6", "4"or "1" cells then check for collition with the ground.
         if (spot === 6 || spot === 4 || spot === 1) {
           collideGround = collideLineRect((playerX) * cellWidth, (playerY + 1) * cellHeight, (playerX + 1) * cellWidth, (playerY + 1) * cellHeight, charecterX, charecterY, 50, 51);
-          //ellipse((x )*cellWidth,(playerY+1) * cellHeight, 10, 10);
-
         }
-        else {
 
+        // if the charecter is  not in the "6", "4"or "1" cells then set the collideGround to false.
+        else {
           collideGround = false;
         }
-        if (spot === 7) {
-          collectCoin1 = true;
-        }
-        else {
-          collectCoin1 = false;
-        }
-        if (spot === 3) {
-          collectCoin2 = true;
-        }
-        else {
-          collectCoin2 = false;
-        }
 
-
+        
+         // if the charecter is in the "7", "8"or "3" cells then check for collition with both platform.
         if (spot === 7 || spot === 8 || spot === 3) {
           collidePlatform = collideRectRect(charecterX + 20, charecterY + 50, 50, 20, width / 2, height / 1.67, width / 8, 20);
           collidePlatform2 = collideRectRect(charecterX + 20, charecterY + 50, 50, 20, width / 1.335, height / 1.67, width / 8, 20);
         }
-        else {
 
+        // if the charecter is not in the "7", "8"or "3" cells then set collition platform to false.
+        else {
           collidePlatform = false;
-          gravityC = 1.38;
         }
         
+        // if the charecter is in the "6" or "4" cells then check for top collition on both platform.
         if (spot === 6 || spot === 4) {
           collideTop = collideRectRect(charecterX + 20, charecterY, 50, 50, width / 1.335, height / 1.45, width / 8, 25);
           collideTop2 = collideRectRect(charecterX + 20, charecterY, 50, 50, width / 2, height / 1.45, width / 8, 25);
           console.log(collideTop);
         }
-        else {
 
+        // if the charecter is not in the "6" or "4" cells then se top collition to false.
+        else {
           collideTop = false;
         }
+
+        // if the charecter is in the "7" then simulate picking up first coin.
+        if (spot === 7) {
+          collectCoin1 = true;
+        }
+  
+        // if the charecter is not in the "7" then set collectCoin1 to false.
+        else {
+          collectCoin1 = false;
+        }
+  
+        // if the charecter is in the "3" then simulate picking up second coin.
+        if (spot === 3) {
+          collectCoin2 = true;
+        }
+  
+        // if the charecter is not in the "3" then set collectCoin2 to false.
+        else {
+          collectCoin2 = false;
+        }
       }
-
-
     }
   }
-  
 }
