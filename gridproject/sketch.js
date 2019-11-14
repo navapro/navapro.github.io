@@ -164,9 +164,8 @@ function displayGrid(theGrid) {
   }
 }
 
+// checking if a key is pressed.
 function keyPressed() {
-
-  // if right space bar is pressed set attack to true.
 
   // if right arrow key is pressed set movingForward to true.
   if (keyCode === 39) {
